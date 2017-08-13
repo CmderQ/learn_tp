@@ -9,6 +9,7 @@ use Think\Model\RelationModel;
 
 class LoginModel extends RelationModel
 {
+    //注册方法
     public function register($username, $password, $email)
     {
         $data = array(
@@ -23,6 +24,19 @@ class LoginModel extends RelationModel
             if ($uid) {
                 return true;
             }
+        }
+        return false;
+    }
+
+    //查找方法
+    public function selectInfo($where)
+    {
+        if(empty($where)){
+            return false;
+        }
+        $result = $this->select($where);
+        if($result){
+            return true;
         }
         return false;
     }
