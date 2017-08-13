@@ -1,5 +1,5 @@
 <!--加载公用头文件-->
-<include file="Pub/header"/>
+<include file="Pub/common_header"/>
 
 <body>
 <div class="page-header center">
@@ -141,40 +141,64 @@
                 repassword = $(".repassword").val(),
                 email = $(".email").val();
             if (!username) {
-                alert("用户名不能为空");
+                $.alert({
+                    title: '错误提示',
+                    content: '用户名不能为空!',
+                });
                 return false;
             }
             if (username.length < 6 || username.length > 15) {
-                alert("用户名长度范围为6到15位");
+                $.alert({
+                    title: '错误提示',
+                    content: '用户名长度范围为6到15位!',
+                });
                 return false;
             }
 
             if (!password) {
-                alert("密码不能为空");
+                $.alert({
+                    title: '错误提示',
+                    content: '密码不能为空!',
+                });
                 return false;
             }
             if (password.length < 6) {
-                alert("密码长度最少为6位");
+                $.alert({
+                    title: '错误提示',
+                    content: '密码长度最少为6位!',
+                });
                 return false;
             }
 
             if (!repassword) {
-                alert("再次输入的密码不能为空");
+                $.alert({
+                    title: '错误提示',
+                    content: '再次输入的密码不能为空!',
+                });
                 return false;
             }
             if (repassword.length < 6) {
-                alert("密码长度最少为6位");
+                $.alert({
+                    title: '错误提示',
+                    content: '密码长度最少为6位!',
+                });
                 return false;
             }
 
             //判断前后两次输入的密码是否一致
             if (trim(password) != trim(repassword)) {
-                alert("两次输入的密码不一致，请重试");
+                $.alert({
+                    title: '错误提示',
+                    content: '两次输入的密码不一致，请重试!',
+                });
                 return false;
             }
 
             if (!email.match(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/)) {
-                alert("邮箱格式不正确, 请重新输入");
+                $.alert({
+                    title: '错误提示',
+                    content: '两邮箱格式不正确, 请重新输入!',
+                });
                 return false;
             }
 
@@ -185,12 +209,17 @@
                 dataType: "json",
                 success: function (result) {
                     if (result.status == 1) {
-                        alert(result.info);
+                        $.confirm({
+                            title: '注册成功',
+                            content: result.info,
+                        });
                         window.location.reload();
                     } else {
-                        alert(result.info);
+                        $.alert({
+                            title: '注册失败',
+                            content: result.info,
+                        });
                         window.location.reload();
-                        $("#register_link").data-target("#register");
                     }
                 },
                 error: function (message) {
