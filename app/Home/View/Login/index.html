@@ -1,27 +1,27 @@
 <!--加载公用头文件-->
-<include file="Pub/header">
-</include>
+<include file="Pub/header"/>
+
 <body>
-    <div class="page-header center">
-        <h1>
+<div class="page-header center">
+    <h1>
             <span class="">
                 用户登录页面
             </span>
-        </h1>
-    </div>
-    <div class="container">
-        <div class="form-horizontal">
-            <div class="form-group center">
-                <label>
-                    <img src="__IMAGES__/avtar.png"/>
-                </label>
-            </div>
-            <div class="form-group ">
-                <label class="col-md-1 col-md-offset-3 control-label">
-                    用户名
-                </label>
-                <div class="col-md-5">
-                    <input class="form-control" name="" placeholder="请输入用户名" type="text">
+    </h1>
+</div>
+<div class="container">
+    <div class="form-horizontal">
+        <div class="form-group center">
+            <label>
+                <img src="__IMAGES__/avtar.png"/>
+            </label>
+        </div>
+        <div class="form-group ">
+            <label class="col-md-1 col-md-offset-3 control-label">
+                用户名
+            </label>
+            <div class="col-md-5">
+                <input class="form-control" name="" placeholder="请输入用户名" type="text">
                 </input>
             </div>
         </div>
@@ -31,93 +31,174 @@
             </label>
             <div class="col-md-5">
                 <input class="form-control" name="" placeholder="请输入密码" type="password">
-            </input>
+                </input>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 col-md-offset-4 control-label">
+                <input class="form-control" name="verify" placeholder="验证码" type="text">
+                </input>
+            </label>
+            <div class="col-md-4">
+                <img id="verify_img" src="__URL__/generatorVerfiy" alt="验证码" title="点击刷新"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-4 col-md-4">
+                <a data-dismiss="modal" data-target="#register" data-toggle="modal" id="register_link">
+                    还没有账号？点我注册
+                </a>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-4 col-md-2">
+                <button class="btn btn-success register">
+                    登录
+                </button>
+                <button class="btn btn-danger">
+                    取消
+                </button>
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        <div class="col-md-offset-4 col-md-4">
-            <a data-dismiss="modal" data-target="#register" data-toggle="modal" href="">
-                还没有账号？点我注册
-            </a>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-4 col-md-2">
-            <button class="btn btn-success register">
-                登录
-            </button>
-            <button class="btn btn-danger">
-                取消
-            </button>
-        </div>
-    </div>
-</div>
-<!-- 注册窗口 弹窗的形式-->
-<div class="modal fade" id="register" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-                <button class="close" data-dismiss="modal">
+    <!-- 注册窗口 弹窗的形式-->
+    <div class="modal fade" id="register" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button class="close" data-dismiss="modal">
                     <span>
                         ×
                     </span>
-                </button>
-            </div>
-            <div class="modal-title">
-                <h1 class="text-center">
-                    注册
-                </h1>
-            </div>
-            <div class="modal-body">
-                <form action="__URL__/register" class="form-group">
-                    <div class="form-group">
-                        <label class="control-label">
-                            用户名
-                        </label>
-                        <input class="form-control" placeholder="6-15位字母或数字" type="text">
-                    </input>
+                    </button>
                 </div>
-                <div class="form-group">
-                    <label class="control-label">
-                        密码
-                    </label>
-                    <input class="form-control" placeholder="至少6位字母或数字" type="password">
-                </input>
+                <div class="modal-title">
+                    <h1 class="text-center">
+                        注册
+                    </h1>
+                </div>
+                <div class="modal-body">
+                    <form action=" " class="form-group">
+                        <div class="form-group">
+                            <label class="control-label">
+                                用户名
+                            </label>
+                            <input class="form-control username" placeholder="用户名长度范围6-15位" type="text">
+                            </input>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">
+                                密码
+                            </label>
+                            <input class="form-control password" placeholder="至少6位" type="password">
+                            </input>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">
+                                再次输入密码
+                            </label>
+                            <input class="form-control repassword" placeholder="至少6位" type="password">
+                            </input>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">
+                                邮箱
+                            </label>
+                            <input class="form-control email" placeholder="例如:123@123.com" type="email">
+                            </input>
+                        </div>
+                        <div class="text-right">
+                            <button class="btn btn-primary register" type="button">
+                                提交
+                            </button>
+                            <button class="btn btn-danger" data-dismiss="modal">
+                                取消
+                            </button>
+                        </div>
+                        <a data-dismiss="modal" data-toggle="modal" href="">
+                            已有账号？点我登录
+                        </a>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label class="control-label">
-                    再次输入密码
-                </label>
-                <input class="form-control" placeholder="至少6位字母或数字" type="password">
-            </input>
         </div>
-        <div class="form-group">
-            <label class="control-label">
-                邮箱
-            </label>
-            <input class="form-control" placeholder="例如:123@123.com" type="email">
-        </input>
     </div>
-    <div class="text-right">
-        <button class="btn btn-primary" type="submit">
-            提交
-        </button>
-        <button class="btn btn-danger" data-dismiss="modal">
-            取消
-        </button>
-    </div>
-    <a data-dismiss="modal" data-toggle="modal" href="">
-        已有账号？点我登录
-    </a>
-</form>
 </div>
-</div>
-</div>
-</div>
+<include file="Pub/common_footer"/>
 <script type="text/javascript">
-    $().ready(function(){
+    $().ready(function () {
+        //随机生成验证码
+        $("#verify_img").click(function () {
+            var verifyURL = "__URL__/generatorVerfiy";
+            var time = new Date().getTime();
+            $("#verify_img").attr({"src": verifyURL + "/" + time});
+        });
 
+        //注册
+        $(".register").click(function () {
+            var username = $(".username").val(),
+                password = $(".password").val(),
+                repassword = $(".repassword").val(),
+                email = $(".email").val();
+            if (!username) {
+                alert("用户名不能为空");
+                return false;
+            }
+            if (username.length < 6 || username.length > 15) {
+                alert("用户名长度范围为6到15位");
+                return false;
+            }
+
+            if (!password) {
+                alert("密码不能为空");
+                return false;
+            }
+            if (password.length < 6) {
+                alert("密码长度最少为6位");
+                return false;
+            }
+
+            if (!repassword) {
+                alert("再次输入的密码不能为空");
+                return false;
+            }
+            if (repassword.length < 6) {
+                alert("密码长度最少为6位");
+                return false;
+            }
+
+            //判断前后两次输入的密码是否一致
+            if (trim(password) != trim(repassword)) {
+                alert("两次输入的密码不一致，请重试");
+                return false;
+            }
+
+            if (!email.match(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/)) {
+                alert("邮箱格式不正确, 请重新输入");
+                return false;
+            }
+
+            $.ajax({
+                type: "POST",
+                data: {user: username, paword: password, email: email},
+                url: "__URL__/register",
+                dataType: "json",
+                success: function (result) {
+                    if (result.status == 1) {
+                        alert(result.info);
+                        window.location.reload();
+                    } else {
+                        alert(result.info);
+                        window.location.reload();
+                        $("#register_link").data-target("#register");
+                    }
+                },
+                error: function (message) {
+                    console.log(message);
+                }
+            });
+
+        });
     })
 </script>
-</div>
 </body>
