@@ -19,7 +19,10 @@
     <link rel="stylesheet" type="text/css" href="/tp/Public/static/css/bootstrap-duallistbox.css">
     <!--复选列表组件-->
     <link rel="stylesheet" type="text/css" href="/tp/Public/static/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="/tp/Public/static/css/login.css">
+    <!--登录页样式-->
+    <link rel="stylesheet" type="text/css" href="/tp/Public/static/css/login_register.css">
+    <!--jquery-confirm样式-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
     </meta>
 </head>
 
@@ -66,10 +69,16 @@
                 <img id="verify_img" src="/tp/index.php/Home/Login/generatorVerfiy" alt="验证码" title="点击刷新"/>
             </div>
         </div>
-        <div class="form-group">
-            <div class="col-md-offset-4 col-md-4">
-                <a data-dismiss="modal" data-target="#register" data-toggle="modal" id="register_link">
+        <div class="form-group  row">
+            <div class=" col-md-offset-4 col-md-2">
+                <a data-dismiss="modal" data-target="#register" data-toggle="modal" id="register_link"
+                   class="btn btn-primary btn-sm">
                     还没有账号？点我注册
+                </a>
+            </div>
+            <div class="col-md-offset-6">
+                <a data-dismiss="modal" data-target="#forgot-psword" data-toggle="modal" class="btn  btn-info btn-sm">
+                    忘记密码？
                 </a>
             </div>
         </div>
@@ -85,7 +94,7 @@
         </div>
     </div>
     <!-- 注册窗口 弹窗的形式-->
-    <div class="modal hide" id="register" tabindex="-1">
+    <div class="modal fade" id="register" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
@@ -146,8 +155,54 @@
             </div>
         </div>
     </div>
-</div>
-<script src="/tp/Public/static/js/jquery.min.js" type="text/javascript">
+    <!--注册窗口结束-->
+
+    <!-- 忘记密码窗口 弹窗的形式-->
+    <div id="forgot-psword" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button class="close" data-dismiss="modal">
+                    <span>
+                        ×
+                    </span>
+                    </button>
+                </div>
+                <div class="modal-title no-padding-bottom">
+                    <h4 class="header red lighter bigger">
+                        <i class="ace-icon fa fa-key"></i>
+                        找回密码
+                    </h4>
+                </div>
+                <div class="modal-body no-padding-top">
+                    <form action=" " class="form-group">
+                        <div class="form-group block clearfix">
+                            <label class="control-label">
+                                输入您的电子邮件和接收指令
+                            </label>
+                            <div class="space-6"></div>
+                            <span class="block input-icon input-icon-right">
+							<input type="email" class="form-control"placeholder="Email"/>
+							 <i class="ace-icon fa fa-envelope"></i>
+							 </span>
+                        </div>
+                        <div class="clearfix">
+                            <button type="button" class=" pull-right btn btn-sm btn-danger">
+                                <i class="ace-icon fa fa-lightbulb-o"></i>
+                                <span class="bigger-110">发送邮件</span>
+                            </button>
+                        </div>
+                        <a data-dismiss="modal" data-toggle="modal" href="">
+                            已有账号？点我登录
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--忘记密码窗口 结束-->
+
+    <script src="/tp/Public/static/js/jquery.min.js" type="text/javascript">
 </script>
 <script src="/tp/Public/static/js/bootstrap.min.js" type="text/javascript">
 </script>
@@ -192,80 +247,111 @@
 <script src="/tp/Public/static/js/prettify.js" type="text/javascript">
 </script>
 <!--代码美化-->
-<script type="text/javascript">
-    $().ready(function () {
-        //随机生成验证码
-        $("#verify_img").click(function () {
-            var verifyURL = "/tp/index.php/Home/Login/generatorVerfiy";
-            var time = new Date().getTime();
-            $("#verify_img").attr({"src": verifyURL + "/" + time});
-        });
-
-        //注册
-        $(".register").click(function () {
-            var username = $(".username").val(),
-                password = $(".password").val(),
-                repassword = $(".repassword").val(),
-                email = $(".email").val();
-            if (!username) {
-                alert("用户名不能为空");
-                return false;
-            }
-            if (username.length < 6 || username.length > 15) {
-                alert("用户名长度范围为6到15位");
-                return false;
-            }
-
-            if (!password) {
-                alert("密码不能为空");
-                return false;
-            }
-            if (password.length < 6) {
-                alert("密码长度最少为6位");
-                return false;
-            }
-
-            if (!repassword) {
-                alert("再次输入的密码不能为空");
-                return false;
-            }
-            if (repassword.length < 6) {
-                alert("密码长度最少为6位");
-                return false;
-            }
-
-            //判断前后两次输入的密码是否一致
-            if (trim(password) != trim(repassword)) {
-                alert("两次输入的密码不一致，请重试");
-                return false;
-            }
-
-            if (!email.match(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/)) {
-                alert("邮箱格式不正确, 请重新输入");
-                return false;
-            }
-
-            $.ajax({
-                type: "POST",
-                data: {user: username, paword: password, email: email},
-                url: "/tp/index.php/Home/Login/register",
-                dataType: "json",
-                success: function (result) {
-                    if (result.status == 1) {
-                        alert(result.info);
-                        window.location.reload();
-                    } else {
-                        alert(result.info);
-                        window.location.reload();
-                        $("#register_link").data-target("#register");
-                    }
-                },
-                error: function (message) {
-                    console.log(message);
-                }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+<!--jquery-confirm -->
+    <script type="text/javascript">
+        $().ready(function () {
+            //随机生成验证码
+            $("#verify_img").click(function () {
+                var verifyURL = "/tp/index.php/Home/Login/generatorVerfiy";
+                var time = new Date().getTime();
+                $("#verify_img").attr({"src": verifyURL + "/" + time});
             });
 
-        });
-    })
-</script>
+            //注册
+            $(".register").click(function () {
+                var username = $(".username").val(),
+                    password = $(".password").val(),
+                    repassword = $(".repassword").val(),
+                    email = $(".email").val();
+                if (!username) {
+                    $.alert({
+                        title: '错误提示',
+                        content: '用户名不能为空!',
+                    });
+                    return false;
+                }
+                if (username.length < 6 || username.length > 15) {
+                    $.alert({
+                        title: '错误提示',
+                        content: '用户名长度范围为6到15位!',
+                    });
+                    return false;
+                }
+
+                if (!password) {
+                    $.alert({
+                        title: '错误提示',
+                        content: '密码不能为空!',
+                    });
+                    return false;
+                }
+                if (password.length < 6) {
+                    $.alert({
+                        title: '错误提示',
+                        content: '密码长度最少为6位!',
+                    });
+                    return false;
+                }
+
+                if (!repassword) {
+                    $.alert({
+                        title: '错误提示',
+                        content: '再次输入的密码不能为空!',
+                    });
+                    return false;
+                }
+                if (repassword.length < 6) {
+                    $.alert({
+                        title: '错误提示',
+                        content: '密码长度最少为6位!',
+                    });
+                    return false;
+                }
+
+                //判断前后两次输入的密码是否一致
+                if (trim(password) != trim(repassword)) {
+                    $.alert({
+                        title: '错误提示',
+                        content: '两次输入的密码不一致，请重试!',
+                    });
+                    return false;
+                }
+
+                if (!email.match(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/)) {
+                    $.alert({
+                        title: '错误提示',
+                        content: '两邮箱格式不正确, 请重新输入!',
+                    });
+                    return false;
+                }
+
+                $.ajax({
+                    type: "POST",
+                    data: {user: username, paword: password, email: email},
+                    url: "/tp/index.php/Home/Login/register",
+                    dataType: "json",
+                    success: function (result) {
+                        if (result.status == 1) {
+                            $.confirm({
+                                title: '注册成功',
+                                content: result.info,
+                            });
+                            window.location.reload();
+                        } else {
+                            $.alert({
+                                title: '注册失败',
+                                content: result.info,
+                            });
+                            window.location.reload();
+                        }
+                    },
+                    error: function (message) {
+                        console.log(message);
+                    }
+                });
+
+            });
+        })
+    </script>
 </body>
