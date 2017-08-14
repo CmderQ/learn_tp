@@ -51,7 +51,7 @@
                 </a>
             </div>
             <div class="col-md-offset-6">
-                <a data-dismiss="modal" data-target="#forgot-psword" data-toggle="modal" class="btn  btn-info btn-sm">
+                <a data-dismiss="modal" data-target="#forgot-psword" data-toggle="modal" class="btn btn-warning btn-sm">
                     忘记密码？
                 </a>
             </div>
@@ -156,12 +156,12 @@
                             </label>
                             <div class="space-6"></div>
                             <span class="block input-icon input-icon-right">
-							<input type="email" class="form-control"placeholder="Email"/>
+							<input type="email" class="form-control" placeholder="Email" id="email"/>
 							 <i class="ace-icon fa fa-envelope"></i>
 							 </span>
                         </div>
                         <div class="clearfix">
-                            <button type="button" class=" pull-right btn btn-sm btn-danger">
+                            <button type="button" class=" pull-right btn btn-sm btn-danger send_email">
                                 <i class="ace-icon fa fa-lightbulb-o"></i>
                                 <span class="bigger-110">发送邮件</span>
                             </button>
@@ -194,14 +194,12 @@
                     email = $(".email").val();
                 if (!username) {
                     $.alert({
-                        title: '错误提示',
                         content: '用户名不能为空!',
                     });
                     return false;
                 }
                 if (username.length < 6 || username.length > 15) {
                     $.alert({
-                        title: '错误提示',
                         content: '用户名长度范围为6到15位!',
                     });
                     return false;
@@ -209,14 +207,12 @@
 
                 if (!password) {
                     $.alert({
-                        title: '错误提示',
                         content: '密码不能为空!',
                     });
                     return false;
                 }
                 if (password.length < 6) {
                     $.alert({
-                        title: '错误提示',
                         content: '密码长度最少为6位!',
                     });
                     return false;
@@ -224,14 +220,12 @@
 
                 if (!repassword) {
                     $.alert({
-                        title: '错误提示',
                         content: '再次输入的密码不能为空!',
                     });
                     return false;
                 }
                 if (repassword.length < 6) {
                     $.alert({
-                        title: '错误提示',
                         content: '密码长度最少为6位!',
                     });
                     return false;
@@ -240,7 +234,6 @@
                 //判断前后两次输入的密码是否一致
                 if (trim(password) != trim(repassword)) {
                     $.alert({
-                        title: '错误提示',
                         content: '两次输入的密码不一致，请重试!',
                     });
                     return false;
@@ -248,7 +241,6 @@
 
                 if (!email.match(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/)) {
                     $.alert({
-                        title: '错误提示',
                         content: '两邮箱格式不正确, 请重新输入!',
                     });
                     return false;
@@ -280,6 +272,34 @@
                 });
 
             });
+
+            //发送邮件
+            $(".send_email").click(function () {
+                var email = $("#email").val();
+                if (!email) {
+                    $.alert({
+                        content: '请输入邮箱!',
+                    });
+                    return false;
+                }
+
+                if (!email.match(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/)) {
+                    $.alert({
+                        content: '邮箱格式不正确, 请重新输入!',
+                    });
+                    return false;
+                }
+
+                $.alert({
+                    content: '邮件发送成功，请登录邮箱重置密码!',
+                    buttons: {
+                        ok: function () {
+                            location.href = "__URL__/index";
+                        }
+                    }
+                });
+            });
         })
     </script>
 </body>
+
