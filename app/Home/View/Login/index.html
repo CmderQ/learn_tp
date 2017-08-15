@@ -21,7 +21,7 @@
                 用户名
             </label>
             <div class="col-md-5">
-                <input class="form-control user_name"  value="请输入用户名" type="text">
+                <input class="form-control user_name"  placeholder="请输入用户名" type="text">
                 </input>
             </div>
         </div>
@@ -30,13 +30,13 @@
                 密码
             </label>
             <div class="col-md-5">
-                <input class="form-control psword" value="请输入密码" type="password">
+                <input class="form-control psword" placeholder="请输入密码" type="password">
                 </input>
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-3 col-md-offset-4 control-label">
-                <input class="form-control verify" name="verify" value="验证码" type="text">
+                <input class="form-control verify" name="verify" placeholder="验证码" type="text">
                 </input>
             </label>
             <div class="col-md-4">
@@ -58,7 +58,7 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-4 col-md-2">
-                <button class="btn btn-success register">
+                <button class="btn btn-success login" type="button">
                     登录
                 </button>
                 <button class="btn btn-danger">
@@ -89,28 +89,28 @@
                             <label class="control-label">
                                 用户名
                             </label>
-                            <input class="form-control username" value="用户名长度范围6-15位" type="text">
+                            <input class="form-control username" placeholder="用户名长度范围6-15位" type="text">
                             </input>
                         </div>
                         <div class="form-group">
                             <label class="control-label">
                                 密码
                             </label>
-                            <input class="form-control password" value="至少6位" type="password">
+                            <input class="form-control password" placeholder="至少6位" type="password">
                             </input>
                         </div>
                         <div class="form-group">
                             <label class="control-label">
                                 再次输入密码
                             </label>
-                            <input class="form-control repassword" value="至少6位" type="password">
+                            <input class="form-control repassword" placeholder="至少6位" type="password">
                             </input>
                         </div>
                         <div class="form-group">
                             <label class="control-label">
                                 邮箱
                             </label>
-                            <input class="form-control register_email" value="例如:123@123.com" type="email">
+                            <input class="form-control register_email" placeholder="例如:123@123.com" type="email">
                             </input>
                         </div>
                         <div class="text-right">
@@ -186,23 +186,71 @@
                 $("#verify_img").attr({"src": verifyURL + "/" + time});
             });
 
-            //获取鼠标焦点的时候，清空默认值
-            $(".username").focus(function () {
-                var email_val = $(this).val();
-                if (email_val == '用户名长度范围6-15位') {
-                    $(this).val("");
+            //登录验证 ajax提交
+            $(".login").click(function(){
+                var name = $(".user_name").val(),
+                    psword = $(".psword").val(),
+                    codeverify = $(".verify").val();
+                if(!name){
+                    $.alert({
+                        content: '用户名不能为空!',
+                    });
+                    return false;
                 }
+                if (name.length < 6 || name.length > 15) {
+                    $.alert({
+                        content: '用户名长度范围为6到15位!',
+                    });
+                    return false;
+                }
+
+                if (!psword) {
+                    $.alert({
+                        content: '密码不能为空!',
+                    });
+                    return false;
+                }
+                if (psword.length < 6) {
+                    $.alert({
+                        content: '密码长度最少为6位!',
+                    });
+                    return false;
+                }
+                if(!codeverify){
+                    $.alert({
+                        content: '验证码不能为空!',
+                    });
+                    return false;
+                }
+                $.ajax({
+                    type: "POST",
+                    data: {user: name, paword: psword, verify: codeverify},
+                    url: "__URL__/index",
+                    dataType: "json",
+                    success: function (result) {
+                        if (result.status == 1) {
+//                            $.confirm({
+//                                title: '注册成功',
+//                                content: result.info,
+//                            });
+//                            window.location.reload();
+                        } else {
+//                            $.alert({
+//                                title: '注册失败',
+//                                content: result.info,
+//                            });
+//                            window.location.reload();
+                       }
+                    },
+                    error: function (message) {
+                        console.log(message);
+                    }
+                });
+
             });
 
-            //鼠标离开输入框的时候，如果没有值，则设置为默认值
-            $(".username").blur(function () {
-                var email_val = $(this).val();
-                if (email_val == "") {
-                    $(this).val("用户名长度范围6-15位");
-                }
-            });
 
-            //注册
+            //注册验证
             $(".register").click(function () {
                 var username = $(".username").val(),
                     password = $(".password").val(),
@@ -262,6 +310,7 @@
                     return false;
                 }
 
+                //以ajax的方式提交
                 $.ajax({
                     type: "POST",
                     data: {user: username, paword: password, email: email},
