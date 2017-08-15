@@ -16,6 +16,12 @@ class LoginController extends Controller
      */
     public function index()
     {
+        if (IS_AJAX) {
+            $username = I('post.user');
+            $password = I('post.paword');
+            $codeverify = I('verify');
+            dump($_SESSION);
+        }
         $this->display();
     }
 
