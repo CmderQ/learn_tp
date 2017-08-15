@@ -225,21 +225,21 @@
                 $.ajax({
                     type: "POST",
                     data: {user: name, paword: psword, verify: codeverify},
-                    url: "__URL__/index",
+                    url: "__URL__/login",
                     dataType: "json",
                     success: function (result) {
                         if (result.status == 1) {
-//                            $.confirm({
-//                                title: '注册成功',
-//                                content: result.info,
-//                            });
-//                            window.location.reload();
+                            $.confirm({
+                                title: '登录成功',
+                                content: result.info,
+                            });
+                            window.location.reload();
                         } else {
-//                            $.alert({
-//                                title: '注册失败',
-//                                content: result.info,
-//                            });
-//                            window.location.reload();
+                            $.alert({
+                                title: '登录失败',
+                                content: result['info'],
+                            });
+                            window.location.reload();
                        }
                     },
                     error: function (message) {
