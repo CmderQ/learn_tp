@@ -21,7 +21,7 @@
                 用户名
             </label>
             <div class="col-md-5">
-                <input class="form-control" name="" placeholder="请输入用户名" type="text">
+                <input class="form-control user_name"  value="请输入用户名" type="text">
                 </input>
             </div>
         </div>
@@ -30,13 +30,13 @@
                 密码
             </label>
             <div class="col-md-5">
-                <input class="form-control" name="" placeholder="请输入密码" type="password">
+                <input class="form-control psword" value="请输入密码" type="password">
                 </input>
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-3 col-md-offset-4 control-label">
-                <input class="form-control" name="verify" placeholder="验证码" type="text">
+                <input class="form-control verify" name="verify" value="验证码" type="text">
                 </input>
             </label>
             <div class="col-md-4">
@@ -89,28 +89,28 @@
                             <label class="control-label">
                                 用户名
                             </label>
-                            <input class="form-control username" placeholder="用户名长度范围6-15位" type="text">
+                            <input class="form-control username" value="用户名长度范围6-15位" type="text">
                             </input>
                         </div>
                         <div class="form-group">
                             <label class="control-label">
                                 密码
                             </label>
-                            <input class="form-control password" placeholder="至少6位" type="password">
+                            <input class="form-control password" value="至少6位" type="password">
                             </input>
                         </div>
                         <div class="form-group">
                             <label class="control-label">
                                 再次输入密码
                             </label>
-                            <input class="form-control repassword" placeholder="至少6位" type="password">
+                            <input class="form-control repassword" value="至少6位" type="password">
                             </input>
                         </div>
                         <div class="form-group">
                             <label class="control-label">
                                 邮箱
                             </label>
-                            <input class="form-control email" placeholder="例如:123@123.com" type="email">
+                            <input class="form-control register_email" value="例如:123@123.com" type="email">
                             </input>
                         </div>
                         <div class="text-right">
@@ -156,7 +156,7 @@
                             </label>
                             <div class="space-6"></div>
                             <span class="block input-icon input-icon-right">
-							<input type="email" class="form-control" placeholder="Email" id="email"/>
+							<input type="email" class="form-control" value="Email" id="email"/>
 							 <i class="ace-icon fa fa-envelope"></i>
 							 </span>
                         </div>
@@ -184,6 +184,22 @@
                 var verifyURL = "__URL__/generatorVerfiy";
                 var time = new Date().getTime();
                 $("#verify_img").attr({"src": verifyURL + "/" + time});
+            });
+
+            //获取鼠标焦点的时候，清空默认值
+            $(".username").focus(function () {
+                var email_val = $(this).val();
+                if (email_val == '用户名长度范围6-15位') {
+                    $(this).val("");
+                }
+            });
+
+            //鼠标离开输入框的时候，如果没有值，则设置为默认值
+            $(".username").blur(function () {
+                var email_val = $(this).val();
+                if (email_val == "") {
+                    $(this).val("用户名长度范围6-15位");
+                }
             });
 
             //注册
@@ -271,6 +287,22 @@
                     }
                 });
 
+            });
+
+            //地址框获取鼠标焦点的时候，清空默认值
+            $("#email").focus(function () {
+                var email_val = $(this).val();
+                if (email_val == 'Email') {
+                    $(this).val("");
+                }
+            });
+
+            //鼠标离开输入框的时候，如果没有值，则设置为默认值
+            $("#email").blur(function () {
+                var email_val = $(this).val();
+                if (email_val == "") {
+                    $(this).val("Email");
+                }
             });
 
             //发送邮件
