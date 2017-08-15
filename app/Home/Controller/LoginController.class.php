@@ -16,12 +16,6 @@ class LoginController extends Controller
      */
     public function index()
     {
-        if (IS_AJAX) {
-            $username = I('post.user');
-            $password = I('post.paword');
-            $codeverify = I('verify');
-            dump($_SESSION);
-        }
         $this->display();
     }
 
@@ -63,6 +57,21 @@ class LoginController extends Controller
 
         } else {
             $this->error('提交失败，请重试');
+        }
+    }
+
+    /**
+     * 登录校验
+     */
+    public function login()
+    {
+        if (IS_AJAX) {
+            $username = I('post.user');
+            $password = I('post.paword');
+            $codeverify = I('verify', '');
+            if(!check_verify($codeverify)){
+                $this->error("亲，验证码输错了哦！");
+            }
         }
     }
 
