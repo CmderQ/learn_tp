@@ -13,6 +13,6 @@ class IndexController extends Controller
     public function index()
     {
 
-        echo '这是首页';
+        echo '这是前台首页';
     }
 }

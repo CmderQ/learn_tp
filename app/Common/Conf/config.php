@@ -16,4 +16,10 @@ return array(
     'DB_CHARSET' => 'utf8',      // 数据库编码
     'DB_DEBUG' => TRUE, // 数据库调试模式 开启后可以记录SQL日志
 
+    //静态文件配置
+    'TMPL_PARSE_STRING'  =>array(
+        '__CSS__' => __ROOT__.'/Public/static/css',
+        '__JS__'     =>__ROOT__.'/Public/static/js',
+        '__IMAGES__'=>__ROOT__.'/Public/static/images',
+    ),
 );
