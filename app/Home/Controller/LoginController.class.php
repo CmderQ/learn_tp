@@ -65,13 +65,15 @@ class LoginController extends Controller
      */
     public function login()
     {
+        dump($_SESSION);
         if (IS_AJAX) {
             $username = I('post.user');
             $password = I('post.paword');
-            $codeverify = I('verify', '');
-            if(!check_verify($codeverify)){
+            $codeverify = I('post.verify', '');
+            if(!check_verify(strtolower($codeverify))){
                 $this->error("亲，验证码输错了哦！");
             }
+            $this->succes("登录成功!");
         }
     }
 
@@ -81,13 +83,13 @@ class LoginController extends Controller
     public function generatorVerfiy()
     {
         $config = array(
-            'fontSize' => 15,    // 验证码字体大小
-            'length' => 6,     // 验证码位数
+            'fontSize' => 24,    // 验证码字体大小
+            'length' => 4,     // 验证码位数
             'useNoise' => false, // 关闭验证码杂点
         );
-        $verify = new Verify();
+        $verify = new Verify($config);
         $verify->imageW = 160;//验证码宽度
-        $verify->imageH = 40;//验证码高度
-        $verify->entry();
+        $verify->imageH = 50;//验证码高度
+        $verify->entry(1);
     }
 }

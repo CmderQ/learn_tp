@@ -232,14 +232,19 @@
                             $.confirm({
                                 title: '登录成功',
                                 content: result.info,
+                                buttons:{
+                                    text:'Submit',
+                                    btnClass:'btn-blue',
+                                    action:function(){
+                                        window.location.reload();
+                                    }
+                                },
                             });
-                            window.location.reload();
                         } else {
                             $.alert({
                                 title: '登录失败',
                                 content: result['info'],
                             });
-                            window.location.reload();
                        }
                     },
                     error: function (message) {
