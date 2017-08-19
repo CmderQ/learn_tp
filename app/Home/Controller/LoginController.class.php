@@ -65,7 +65,6 @@ class LoginController extends Controller
      */
     public function login()
     {
-        dump($_SESSION);
         if (IS_AJAX) {
             $username = I('post.user');
             $password = I('post.paword');
@@ -73,7 +72,7 @@ class LoginController extends Controller
             if(!check_verify(strtolower($codeverify))){
                 $this->error("亲，验证码输错了哦！");
             }
-            $this->succes("登录成功!");
+            $this->success("登录成功!");
         }
     }
 
@@ -90,6 +89,6 @@ class LoginController extends Controller
         $verify = new Verify($config);
         $verify->imageW = 160;//验证码宽度
         $verify->imageH = 50;//验证码高度
-        $verify->entry(1);
+        $verify->entry();
     }
 }
