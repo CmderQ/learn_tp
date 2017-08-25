@@ -10,6 +10,16 @@ use Think\Verify;
  */
 class LoginController extends Controller
 {
+    /**
+     * @var /Home/Model/LoginModel
+     */
+    protected  $loginservice;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->loginservice = D('Login');
+    }
 
     /**
      * 注册登录首页
@@ -42,13 +52,12 @@ class LoginController extends Controller
                 $this->error('密码长度最少为6位');
             }
 
-            $pattern = "/^([0-9A-Za-z\\-_\\.]+)@([0-9a-z]+\\.[a-z]{2,3}(\\.[a-z]{2})?)$/i";
-            if (!preg_match($pattern, $email)) {
-                $this->error('邮箱格式不正确, 请重新输入');
-            }
+//            $pattern = "/^([0-9A-Za-z\\-_\\.]+)@([0-9a-z]+\\.[a-z]{2,3}(\\.[a-z]{2})?)$/i";
+//            if (!preg_match($pattern, $email)) {
+//                $this->error('邮箱格式不正确, 请重新输入');
+//            }
             $password = Crypt($password);
-            $login = D('Login');
-            $result = $login->register($username, $password, $email);
+            $result = $this->loginservice->register($username, $password, $email);
             if (!$result) {
                 $this->error('注册失败，请重试');
             }
@@ -69,8 +78,15 @@ class LoginController extends Controller
             $username = I('post.user');
             $password = I('post.paword');
             $codeverify = I('post.verify', '');
-            if(!check_verify(strtolower($codeverify))){
+            if (!check_verify(strtolower($codeverify))) {
                 $this->error("亲，验证码输错了哦！");
+            }
+            $where = [];
+            $where['user_name'] = $username;
+            $where['password'] = Crypt($password);
+            $result = $this->loginservice->getInfo($where);
+            if(!$result){
+                $this->error("亲，用户名或密码输入错误，请重新输入哦！");
             }
             $this->success("登录成功!");
         }
