@@ -1,5 +1,9 @@
 <include file="Pub/common_header"/>
-
+<style>
+    .footer{
+        margin-bottom: 10px;
+    }
+</style>
 <body>
 <div class="page-header center">
     <h1>
@@ -66,6 +70,8 @@
             </div>
         </div>
     </div>
+    <div class="col-md-offset-3  col-md-6 footer">请注明: Copyright By cmderQ</div>
+</div>
     <!-- 注册窗口 弹窗的形式-->
     <div class="modal fade" id="register" tabindex="-1">
         <div class="modal-dialog">
@@ -308,12 +314,14 @@
                     return false;
                 }
 
-                if (!email.match(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/)) {
-                    $.alert({
-                        content: '两邮箱格式不正确, 请重新输入!',
-                    });
-                    return false;
-                }
+                //邮箱正则匹配
+//                var reg =  /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
+//                if (!reg.test(email)) {
+//                    $.alert({
+//                        content: '邮箱格式不正确, 请重新输入!',
+//                    });
+//                    return false;
+//                }
 
                 //以ajax的方式提交
                 $.ajax({
