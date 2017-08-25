@@ -12,7 +12,8 @@ class IndexController extends Controller
 
     public function index()
     {
-
-        echo '这是前台首页';
+        if($_SESSION['user_name'] == ''){
+            $this->redirect("/login/index", '',1, '请先进行登录...');
+        }
     }
 }
