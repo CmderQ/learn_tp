@@ -29,12 +29,12 @@ class LoginModel extends RelationModel
     }
 
     //查找方法
-    public function selectInfo($where)
+    public function getInfo($where)
     {
         if(empty($where)){
             return false;
         }
-        $result = $this->select($where);
+        $result = $this->field('id')->where($where)->find();
         if($result){
             return true;
         }
