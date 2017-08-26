@@ -1,6 +1,6 @@
 <include file="Pub/common_header"/>
 <style>
-    .footer{
+    .footer {
         margin-bottom: 10px;
     }
 </style>
@@ -24,7 +24,7 @@
                 用户名
             </label>
             <div class="col-md-5">
-                <input class="form-control user_name"  placeholder="请输入用户名" type="text">
+                <input class="form-control user_name" placeholder="请输入用户名" type="text">
                 </input>
             </div>
         </div>
@@ -72,328 +72,362 @@
     </div>
     <div class="col-md-offset-3  col-md-6 footer">请注明: Copyright By cmderQ</div>
 </div>
-    <!-- 注册窗口 弹窗的形式-->
-    <div class="modal fade" id="register" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <button class="close" data-dismiss="modal">
+<!-- 注册窗口 弹窗的形式-->
+<div class="modal fade" id="register" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button class="close" data-dismiss="modal">
                     <span>
                         ×
                     </span>
-                    </button>
-                </div>
-                <div class="modal-title">
-                    <h1 class="text-center">
-                        注册
-                    </h1>
-                </div>
-                <div class="modal-body">
-                    <form action=" " class="form-group">
-                        <div class="form-group">
-                            <label class="control-label">
-                                用户名
-                            </label>
-                            <input class="form-control username" placeholder="用户名长度范围6-15位" type="text">
-                            </input>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">
-                                密码
-                            </label>
-                            <input class="form-control password" placeholder="至少6位" type="password">
-                            </input>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">
-                                再次输入密码
-                            </label>
-                            <input class="form-control repassword" placeholder="至少6位" type="password">
-                            </input>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">
-                                邮箱
-                            </label>
-                            <input class="form-control register_email" placeholder="例如:123@123.com" type="email">
-                            </input>
-                        </div>
-                        <div class="text-right">
-                            <button class="btn btn-primary register" type="button">
-                                提交
-                            </button>
-                            <button class="btn btn-danger" data-dismiss="modal">
-                                取消
-                            </button>
-                        </div>
-                        <a data-dismiss="modal" data-toggle="modal" href="">
-                            已有账号？点我登录
-                        </a>
-                    </form>
-                </div>
+                </button>
+            </div>
+            <div class="modal-title">
+                <h1 class="text-center">
+                    注册
+                </h1>
+            </div>
+            <div class="modal-body">
+                <form action=" " class="form-group">
+                    <div class="form-group">
+                        <label class="control-label">
+                            用户名
+                        </label>
+                        <input class="form-control username" placeholder="用户名长度范围6-15位" type="text">
+                        </input>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">
+                            密码
+                        </label>
+                        <input class="form-control password" placeholder="至少6位" type="password">
+                        </input>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">
+                            再次输入密码
+                        </label>
+                        <input class="form-control repassword" placeholder="至少6位" type="password">
+                        </input>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">
+                            邮箱
+                        </label>
+                        <input class="form-control register_email" placeholder="例如:123@123.com" type="email">
+                        </input>
+                    </div>
+                    <div class="text-right">
+                        <button class="btn btn-primary register" type="button">
+                            提交
+                        </button>
+                        <button class="btn btn-danger" data-dismiss="modal">
+                            取消
+                        </button>
+                    </div>
+                    <a data-dismiss="modal" data-toggle="modal" href="">
+                        已有账号？点我登录
+                    </a>
+                </form>
             </div>
         </div>
     </div>
-    <!--注册窗口结束-->
+</div>
+<!--注册窗口结束-->
 
-    <!-- 忘记密码窗口 弹窗的形式-->
-    <div id="forgot-psword" class="modal fade" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <button class="close" data-dismiss="modal">
+<!-- 忘记密码窗口 弹窗的形式-->
+<div id="forgot-psword" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button class="close" data-dismiss="modal">
                     <span>
                         ×
                     </span>
-                    </button>
-                </div>
-                <div class="modal-title no-padding-bottom">
-                    <h4 class="header red lighter bigger">
-                        <i class="ace-icon fa fa-key"></i>
-                        找回密码
-                    </h4>
-                </div>
-                <div class="modal-body no-padding-top">
-                    <form action=" " class="form-group">
-                        <div class="form-group block clearfix">
-                            <label class="control-label">
-                                输入您的电子邮件和接收指令
-                            </label>
-                            <div class="space-6"></div>
-                            <span class="block input-icon input-icon-right">
+                </button>
+            </div>
+            <div class="modal-title no-padding-bottom">
+                <h4 class="header red lighter bigger">
+                    <i class="ace-icon fa fa-key"></i>
+                    找回密码
+                </h4>
+            </div>
+            <div class="modal-body no-padding-top">
+                <form action=" " class="form-group">
+                    <div class="form-group block clearfix">
+                        <label class="control-label">
+                            输入您的电子邮件和接收指令
+                        </label>
+                        <div class="space-6"></div>
+                        <span class="block input-icon input-icon-right">
 							<input type="email" class="form-control" value="Email" id="email"/>
 							 <i class="ace-icon fa fa-envelope"></i>
 							 </span>
-                        </div>
-                        <div class="clearfix">
-                            <button type="button" class=" pull-right btn btn-sm btn-danger send_email">
-                                <i class="ace-icon fa fa-lightbulb-o"></i>
-                                <span class="bigger-110">发送邮件</span>
-                            </button>
-                        </div>
-                        <a data-dismiss="modal" data-toggle="modal" href="">
-                            已有账号？点我登录
-                        </a>
-                    </form>
-                </div>
+                    </div>
+                    <div class="clearfix">
+                        <button type="button" class=" pull-right btn btn-sm btn-danger send_email">
+                            <i class="ace-icon fa fa-lightbulb-o"></i>
+                            <span class="bigger-110">发送邮件</span>
+                        </button>
+                    </div>
+                    <a data-dismiss="modal" data-toggle="modal" href="">
+                        已有账号？点我登录
+                    </a>
+                </form>
             </div>
         </div>
     </div>
-    <!--忘记密码窗口 结束-->
+</div>
+<!--忘记密码窗口 结束-->
 
-    <include file="Pub/common_footer"/>
-    <script type="text/javascript">
+<include file="Pub/common_footer"/>
+<script type="text/javascript">
 
-        $().ready(function () {
+    $().ready(function () {
 
-            //随机生成验证码
-            $("#verify_img").click(function () {
-                var verifyURL = "__URL__/generatorVerfiy";
-                var time = new Date().getTime();
-                $("#verify_img").attr("src",  verifyURL + "/" + time);
+        //随机生成验证码
+        $("#verify_img").click(function () {
+            var verifyURL = "__URL__/generatorVerfiy";
+            var time = new Date().getTime();
+            $("#verify_img").attr("src", verifyURL + "/" + time);
+        });
+    })
+
+    //登录验证 ajax提交
+    $(".login").click(function () {
+        var name = $(".user_name").val(),
+            psword = $(".psword").val(),
+            codeverify = $(".verify").val();
+        if (!name) {
+            $.alert({
+                content: '用户名不能为空!',
             });
-
-            //登录验证 ajax提交
-            $(".login").click(function(){
-                var name = $(".user_name").val(),
-                    psword = $(".psword").val(),
-                    codeverify = $(".verify").val();
-                if(!name){
-                    $.alert({
-                        content: '用户名不能为空!',
-                    });
-                    return false;
-                }
-                if (name.length < 6 || name.length > 15) {
-                    $.alert({
-                        content: '用户名长度范围为6到15位!',
-                    });
-                    return false;
-                }
-
-                if (!psword) {
-                    $.alert({
-                        content: '密码不能为空!',
-                    });
-                    return false;
-                }
-                if (psword.length < 6) {
-                    $.alert({
-                        content: '密码长度最少为6位!',
-                    });
-                    return false;
-                }
-                if(!codeverify){
-                    $.alert({
-                        content: '验证码不能为空!',
-                    });
-                    return false;
-                }
-                $.ajax({
-                    type: "POST",
-                    data: {user: name, paword: psword, verify: codeverify},
-                    url: "__URL__/login",
-                    dataType: "json",
-                    success: function (result) {
-                        if (result.status == 1) {
-                            $.confirm({
-                                title: '成功',
-                                content: result.info,
-                                buttons:{
-                                    OK:function(){
-                                        location.href = "https://github.com/CmderQ?tab=repositories";
-                                    }
-                                }
-                            });
-                            //window.location.href="";
-                        } else {
-                            $.alert({
-                                title: '失败',
-                                content: result['info'],
-                            });
-                       }
-                    },
-                    error: function (message) {
-                        console.log(message);
-                    }
-                });
-
+            return false;
+        }
+        if (name.length < 6 || name.length > 15) {
+            $.alert({
+                content: '用户名长度范围为6到15位!',
             });
+            return false;
+        }
 
-
-            //注册验证
-            $(".register").click(function () {
-                var username = $(".username").val(),
-                    password = $(".password").val(),
-                    repassword = $(".repassword").val(),
-                    email = $(".email").val();
-                if (!username) {
-                    $.alert({
-                        content: '用户名不能为空!',
-                    });
-                    return false;
-                }
-                if (username.length < 6 || username.length > 15) {
-                    $.alert({
-                        content: '用户名长度范围为6到15位!',
-                    });
-                    return false;
-                }
-
-                if (!password) {
-                    $.alert({
-                        content: '密码不能为空!',
-                    });
-                    return false;
-                }
-                if (password.length < 6) {
-                    $.alert({
-                        content: '密码长度最少为6位!',
-                    });
-                    return false;
-                }
-
-                if (!repassword) {
-                    $.alert({
-                        content: '再次输入的密码不能为空!',
-                    });
-                    return false;
-                }
-                if (repassword.length < 6) {
-                    $.alert({
-                        content: '密码长度最少为6位!',
-                    });
-                    return false;
-                }
-
-                //判断前后两次输入的密码是否一致
-                if (trim(password) != trim(repassword)) {
-                    $.alert({
-                        content: '两次输入的密码不一致，请重试!',
-                    });
-                    return false;
-                }
-
-                //邮箱正则匹配
-//                var reg =  /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
-//                if (!reg.test(email)) {
-//                    $.alert({
-//                        content: '邮箱格式不正确, 请重新输入!',
-//                    });
-//                    return false;
-//                }
-
-                //以ajax的方式提交
-                $.ajax({
-                    type: "POST",
-                    data: {user: username, paword: password, email: email},
-                    url: "__URL__/register",
-                    dataType: "json",
-                    success: function (result) {
-                        if (result.status == 1) {
-                            $.confirm({
-                                title: '注册成功',
-                                content: result.info,
-                            });
-                            window.location.reload();
-                        } else {
-                            $.alert({
-                                title: '注册失败',
-                                content: result.info,
-                            });
-                            window.location.reload();
+        if (!psword) {
+            $.alert({
+                content: '密码不能为空!',
+            });
+            return false;
+        }
+        if (psword.length < 6) {
+            $.alert({
+                content: '密码长度最少为6位!',
+            });
+            return false;
+        }
+        if (!codeverify) {
+            $.alert({
+                content: '验证码不能为空!',
+            });
+            return false;
+        }
+        $.ajax({
+            type: "POST",
+            data: {user: name, paword: psword, verify: codeverify},
+            url: "__URL__/login",
+            dataType: "json",
+            success: function (result) {
+                if (result.status == 1) {
+                    $.confirm({
+                        title: '成功',
+                        content: result.info,
+                        buttons: {
+                            OK: function () {
+                                location.href = "https://github.com/CmderQ?tab=repositories";
+                            }
                         }
-                    },
-                    error: function (message) {
-                        console.log(message);
-                    }
-                });
-
-            });
-
-            //地址框获取鼠标焦点的时候，清空默认值
-            $("#email").focus(function () {
-                var email_val = $(this).val();
-                if (email_val == 'Email') {
-                    $(this).val("");
-                }
-            });
-
-            //鼠标离开输入框的时候，如果没有值，则设置为默认值
-            $("#email").blur(function () {
-                var email_val = $(this).val();
-                if (email_val == "") {
-                    $(this).val("Email");
-                }
-            });
-
-            //发送邮件
-            $(".send_email").click(function () {
-                var email = $("#email").val();
-                if (!email) {
-                    $.alert({
-                        content: '请输入邮箱!',
                     });
-                    return false;
-                }
-
-                if (!email.match(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/)) {
+                    //window.location.href="";
+                } else {
                     $.alert({
-                        content: '邮箱格式不正确, 请重新输入!',
+                        title: '失败',
+                        content: result['info'],
                     });
-                    return false;
                 }
+            },
+            error: function (message) {
+                console.log(message);
+            }
+        });
 
-                $.alert({
-                    content: '邮件发送成功，请登录邮箱重置密码!',
-                    buttons: {
-                        ok: function () {
-                            location.href = "__URL__/index";
-                        }
-                    }
-                });
+    });
+
+
+    //验证邮箱是否被注册
+    function checkEmailIsExist(value) {
+        var flag = false;
+        if (value == '') {
+            $.alert({
+                content: '输入的邮箱地址不能为空!',
             });
-        })
-    </script>
+        }
+        $.ajax({
+            type: "POST",
+            data: {email: value},
+            url: "__URL__/checkEmail",
+            dataType: "json",
+            async: false,//注，这里需要改成同步方式。若异步方式，则会跳过此验证
+            success: function (result) {
+                var status = result.status;
+                if (status == '1') {
+                    flag = true;
+                }
+            },
+            error: function (message) {
+                console.log(message);
+            }
+        });
+        return flag;
+    }
+
+    //注册验证
+    $(".register").click(function () {
+        var username = $(".username").val(),
+            password = $(".password").val(),
+            repassword = $(".repassword").val(),
+            email = $(".register_email").val();
+        if (!username) {
+            $.alert({
+                content: '用户名不能为空!',
+            });
+            return false;
+        }
+        if (username.length < 6 || username.length > 15) {
+            $.alert({
+                content: '用户名长度范围为6到15位!',
+            });
+            return false;
+        }
+
+        if (!password) {
+            $.alert({
+                content: '密码不能为空!',
+            });
+            return false;
+        }
+        if (password.length < 6) {
+            $.alert({
+                content: '密码长度最少为6位!',
+            });
+            return false;
+        }
+
+        if (!repassword) {
+            $.alert({
+                content: '再次输入的密码不能为空!',
+            });
+            return false;
+        }
+        if (repassword.length < 6) {
+            $.alert({
+                content: '密码长度最少为6位!',
+            });
+            return false;
+        }
+
+        //判断前后两次输入的密码是否一致
+        if (trim(password) != trim(repassword)) {
+            $.alert({
+                content: '两次输入的密码不一致，请重试!',
+            });
+            return false;
+        }
+
+        //邮箱正则匹配
+        var reg = /^([\.a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/;
+        if (!reg.test(email)) {
+            $.alert({
+                content: '邮箱格式不正确, 请重新输入!',
+            });
+            return false;
+        }
+
+        if (checkEmailIsExist(email)) {
+            $.alert({
+                content: '邮箱已被注册，请更换邮箱地址!',
+            });
+            return false;
+        }
+
+        //以ajax的方式提交
+        $.ajax({
+            type: "POST",
+            data: {user: username, paword: password, email: email},
+            url: "__URL__/register",
+            dataType: "json",
+            success: function (result) {
+                if (result.status == 1) {
+                    $.confirm({
+                        title: '注册成功',
+                        content: result.info,
+                    });
+                    window.location.reload();
+                } else {
+                    $.alert({
+                        title: '注册失败',
+                        content: result.info,
+                    });
+                    window.location.reload();
+                }
+            },
+            error: function (message) {
+                console.log(message);
+            }
+        });
+
+    });
+
+    //地址框获取鼠标焦点的时候，清空默认值
+    $("#email").focus(function () {
+        var email_val = $(this).val();
+        if (email_val == 'Email') {
+            $(this).val("");
+        }
+    });
+
+    //鼠标离开输入框的时候，如果没有值，则设置为默认值
+    $("#email").blur(function () {
+        var email_val = $(this).val();
+        if (email_val == "") {
+            $(this).val("Email");
+        }
+    });
+
+    //发送邮件
+    $(".send_email").click(function () {
+        var email = $("#email").val();
+        if (!email) {
+            $.alert({
+                content: '请输入邮箱!',
+            });
+            return false;
+        }
+
+        if (!email.match(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/)) {
+            $.alert({
+                content: '邮箱格式不正确, 请重新输入!',
+            });
+            return false;
+        }
+
+        $.alert({
+            content: '邮件发送成功，请登录邮箱重置密码!',
+            buttons: {
+                ok: function () {
+                    location.href = "__URL__/index";
+                }
+            }
+        });
+    });
+</script>
 </body>
 
