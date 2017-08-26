@@ -1,9 +1,7 @@
 <include file="Pub/common_header"/>
-<style>
-    .footer {
-        margin-bottom: 10px;
-    }
-</style>
+<head>
+    <link rel="stylesheet" type="text/css" href="__CSS__/home_index.css">
+</head>
 <body>
 <div class="page-header center">
     <h1>
@@ -70,7 +68,8 @@
             </div>
         </div>
     </div>
-    <div class="col-md-offset-3  col-md-6 footer">请注明: Copyright By cmderQ</div>
+    <div class="space-30"></div>
+    <div class="col-md-offset-3  col-md-6 footer center">请注明: Copyright By cmderQ</div>
 </div>
 <!-- 注册窗口 弹窗的形式-->
 <div class="modal fade" id="register" tabindex="-1">
@@ -419,12 +418,37 @@
             return false;
         }
 
-        $.alert({
-            content: '邮件发送成功，请登录邮箱重置密码!',
-            buttons: {
-                ok: function () {
-                    location.href = "__URL__/index";
+        //判断用户输入的邮箱是否存在，若存在，则提示发送的邮箱地址正确
+        $.ajax({
+            type: "POST",
+            data: {email: email},
+            url: "__URL__/checkEmail",
+            dataType: "json",
+            async: false,//注，这里需要改成同步方式。若异步方式，则会跳过此验证
+            success: function (result) {
+                var status = result.status;
+                if (status == '1') {
+                    $.alert({
+                        content: '邮件发送成功，请登录邮箱重置密码!',
+                        buttons: {
+                            ok: function () {
+                                location.href = "__URL__/index";
+                            }
+                        }
+                    });
+                }else{
+                    $.alert({
+                        content: '邮箱地址不存在，请输入你关联的邮箱地址!',
+                        buttons: {
+                            ok: function () {
+                                window.location.reload();
+                            }
+                        }
+                    });
                 }
+            },
+            error: function (message) {
+                console.log(message);
             }
         });
     });
