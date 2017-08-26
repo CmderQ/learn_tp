@@ -13,7 +13,7 @@ class LoginController extends Controller
     /**
      * @var /Home/Model/LoginModel
      */
-    protected  $loginservice;
+    protected $loginservice;
 
     public function __construct()
     {
@@ -52,10 +52,10 @@ class LoginController extends Controller
                 $this->error('密码长度最少为6位');
             }
 
-//            $pattern = "/^([0-9A-Za-z\\-_\\.]+)@([0-9a-z]+\\.[a-z]{2,3}(\\.[a-z]{2})?)$/i";
-//            if (!preg_match($pattern, $email)) {
-//                $this->error('邮箱格式不正确, 请重新输入');
-//            }
+            $pattern = "/^([0-9A-Za-z\\-_\\.]+)@([0-9a-z]+\\.[a-z]{2,3}(\\.[a-z]{2})?)$/i";
+            if (!preg_match($pattern, $email)) {
+                $this->error('邮箱格式不正确, 请重新输入');
+            }
             $password = Crypt($password);
             $result = $this->loginservice->register($username, $password, $email);
             if (!$result) {
@@ -85,7 +85,7 @@ class LoginController extends Controller
             $where['user_name'] = $username;
             $where['password'] = Crypt($password);
             $result = $this->loginservice->getInfo($where);
-            if(!$result){
+            if (!$result) {
                 $this->error("亲，用户名或密码输入错误，请重新输入哦！");
             }
             $this->success("登录成功!");
@@ -106,5 +106,25 @@ class LoginController extends Controller
         $verify->imageW = 160;//验证码宽度
         $verify->imageH = 50;//验证码高度
         $verify->entry();
+    }
+
+
+    /**
+     * 检查邮箱有无被注册
+     */
+    public function checkEmail()
+    {
+        $email = I('post.email');
+        if (empty($email)) {
+            $this->error('邮箱地址不能为空!');
+        }
+
+        $where['email'] = $email;
+        $result = $this->loginservice->getInfo($where);
+        if ($result) {
+            $this->success('邮箱地址已存在');
+        }
+
+        $this->error('邮箱地址不能为空!');
     }
 }
