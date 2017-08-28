@@ -42,12 +42,15 @@ class LoginController extends Controller
             if (empty($username)) {
                 $this->error('用户名不能为空');
             }
+
             if (mb_strlen($username, 'utf-8') < 6 || mb_strlen($username, 'utf-8') > 15) {
                 $this->error('用户名长度范围为6到15位');
             }
+
             if (empty($password)) {
                 $this->error('密码不能为空');
             }
+
             if (trim($password) < 6) {
                 $this->error('密码长度最少为6位');
             }
@@ -58,6 +61,7 @@ class LoginController extends Controller
             }
             $password = Crypt($password);
             $result = $this->loginservice->register($username, $password, $email);
+
             if (!$result) {
                 $this->error('注册失败，请重试');
             }
@@ -81,13 +85,16 @@ class LoginController extends Controller
             if (!check_verify(strtolower($codeverify))) {
                 $this->error("亲，验证码输错了哦！");
             }
+
             $where = [];
             $where['user_name'] = $username;
             $where['password'] = Crypt($password);
             $result = $this->loginservice->getInfo($where);
+
             if (!$result) {
                 $this->error("亲，用户名或密码输入错误，请重新输入哦！");
             }
+
             $this->success("登录成功!");
         }
     }
@@ -102,6 +109,7 @@ class LoginController extends Controller
             'length' => 4,     // 验证码位数
             'useNoise' => false, // 关闭验证码杂点
         );
+
         $verify = new Verify($config);
         $verify->imageW = 160;//验证码宽度
         $verify->imageH = 50;//验证码高度
@@ -121,6 +129,7 @@ class LoginController extends Controller
 
         $where['email'] = $email;
         $result = $this->loginservice->getInfo($where);
+
         if ($result) {
             $this->success('邮箱地址已存在');
         }
