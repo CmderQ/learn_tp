@@ -12,8 +12,9 @@ class IndexController extends Controller
 
     public function index()
     {
-        if($_SESSION['user_name'] == ''){
-            $this->redirect("/login/index", '',1, '请先进行登录...');
-        }
+//        if($_SESSION['user_name'] == ''){
+//            $this->redirect("/login/index", '',1, '请先进行登录...');
+//        }
+        $this->display();
     }
 }
