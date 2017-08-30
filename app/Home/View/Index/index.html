@@ -3,33 +3,91 @@
 <head>
     <link rel="stylesheet" type="text/css" href="__CSS__/home_index.css">
     <style>
-        body {
-            overflow-x:hidden;
-            overflow-y:hidden;
-        }
-        .zoom {
-            display:inline-block;
-            position: relative;
-        }
+
     </style>
 </head>
+<h1>最可爱的baby投票</h1>
 <body>
-<div >
-    <ul class="artist_l">
-        <li class=" col-md-2">
-            <div class="zoom"  id='ex1'>
+<div>
+    <div class="row">
+        <div class="col-md-2">
+            <div class="zoom" id='ex1'>
                 <a href="#">
-                    <img src="__IMAGES__/1.jpg"  width='300' height='250' data-action="zoom" />
+                    <img src="__IMAGES__/1.jpg" width='300' height='250' data-action="zoom"/>
                 </a>
             </div>
-        </li>
-    </ul>
+            <div class="votedo">
+                <div class="votenum">票数：<b>0</b>票</div>
+                <div class="vote">投票</div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="zoom" id='ex2'>
+                <a href="#">
+                    <img src="__IMAGES__/2.jpg" width='300' height='250' data-action="zoom"/>
+                </a>
+            </div>
+            <div class="votedo">
+                <div class="votenum">票数：<b>0</b>票</div>
+                <div class="vote">投票</div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="zoom" id='ex3'>
+                <a href="#">
+                    <img src="__IMAGES__/3.jpg" width='300' height='250' data-action="zoom"/>
+                </a>
+            </div>
+            <div class="votedo">
+                <div class="votenum">票数：<b>0</b>票</div>
+                <div class="vote">投票</div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="zoom" id='ex4'>
+                <a href="#">
+                    <img src="__IMAGES__/4.jpg" width='300' height='250' data-action="zoom"/>
+                </a>
+            </div>
+            <div class="votedo">
+                <div class="votenum">票数：<b>0</b>票</div>
+                <div class="vote">投票</div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="zoom" id='ex5'>
+                <a href="#">
+                    <img src="__IMAGES__/5.png" width='300' height='250' data-action="zoom"/>
+                </a>
+            </div>
+            <div class="votedo">
+                <div class="votenum">票数：<b>0</b>票</div>
+                <div class="vote">投票</div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="zoom" id='ex6'>
+                <a href="#">
+                    <img src="__IMAGES__/6.jpg" width='300' height='250' data-action="zoom"/>
+                </a>
+            </div>
+            <div class="votedo">
+                <div class="votenum">票数：<b>0</b>票</div>
+                <div class="vote">投票</div>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="col-md-offset-3  col-md-6 center"><span>请注明: Copyright By cmderQ</span></div>
 <include file="Pub/common_footer"/>
 <script>
- $(function () {
-     $('#ex1').zoom();
- })
+    $(function () {
+        $('#ex1').zoom();
+        $('#ex2').zoom();
+        $('#ex3').zoom();
+        $('#ex4').zoom();
+        $('#ex5').zoom();
+        $('#ex6').zoom();
+    })
 </script>
 </body>
