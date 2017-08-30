@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+        .zoom {
+            display:inline-block;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 代码部分begin -->
+<div class="lanren">
+    <div class="lanren-content">
+			<span class='zoom' id='ex1'>
+				<img src='__IMAGES__/design.jpg' width='555' height='320' alt='web design'/>
+			</span>
+        <span class='zoom' id='ex2'>
+				<img src='__IMAGES__/women.jpg' width='290' height='320' alt='women'/>
+			</span>
+        <span class='zoom' id='ex3'>
+				<img src='__IMAGES__/horse.jpg' width='555' height='320' alt='horse'/>
+			</span>
+        <span class='zoom' id='ex4'>
+				<img src='__IMAGES__/women2.jpg' width='290' height='320' alt='women2'/>
+			</span>
+    </div>
+</div>
+<include file="Pub/common_footer"/>
+<script>
+    $(document).ready(function(){
+        $('#ex1').zoom();
+        $('#ex2').zoom({ on:'grab' });
+        $('#ex3').zoom({ on:'click' });
+        $('#ex4').zoom({ on:'toggle' });
+    });
+</script>
+</body>
+</html>
