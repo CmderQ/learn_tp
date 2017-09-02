@@ -1,8 +1,7 @@
 ﻿@charset "utf-8";
-body, ul, dl, dd, dt, ol, li, p, h1, h2, h3, h4, h5, h6, textarea, form, select, fieldset, table, td, div, input {margin:0;padding:0;-webkit-text-size-adjust:none}
-h1, h2, h3, h4, h5, h6{font-size:12px;font-weight:normal}
+body, ul, dl, dd, dt, ol, li, p, textarea, form, select, fieldset, table, td, div, input {margin:0;padding:0;-webkit-text-size-adjust:none}
 a img {border:0}
-body{color:#333;text-align:center;font:12px "微软雅黑";}
+body{color:#333;text-align:center;font:12px "微软雅黑"; overflow-y:auto;}
 ul, ol, li {list-style-type:none;vertical-align:0}
 a {outline-style:none;color:#535353;text-decoration:none}
 a:hover{color:#D40000;text-decoration:none}
@@ -10,7 +9,7 @@ a:hover{color:#D40000;text-decoration:none}
 /* itagBox */
 .itagBox{margin:10px auto 0px;clear:both;width:980px;overflow:hidden;}
 .itagBox ul{width:980px;}
-.itagBox ul li{position:relative;float:left;width:240px;background:#fff;height:190px; overflow:hidden;margin:0px 6px 6px 0px;}
+.itagBox ul li{position:relative;float:left;width:240px;background:#fff;height:190px; margin:0px 6px 6px 0px;}
 .itagBox ul .votedo
 {
     width:100%;
@@ -21,22 +20,20 @@ a:hover{color:#D40000;text-decoration:none}
 .votedo .votenum
 {
     float:left;
-    width:140px;
+    width:70%;
     height:40px;
     line-height:40px;
     text-align:left;
-    margin-left:8px;
     font-size:16px;
     color:#cc0000;
 }
 .votedo .vote
 {
     float:right;
-    width:70px;
+    width:30%;
     height:26px;
     line-height:26px;
-    text-align:left;
-    margin:7px 0 0 0;
+    margin:7px 0 0 auto;
     background-color:#FF4040;
     border:1px solid #FF3030;
     text-align:center;
@@ -54,12 +51,25 @@ a:hover{color:#D40000;text-decoration:none}
 
    img{margin-top: 20px;}
 
-   body {
-    overflow-x: hidden;
-    overflow-y: hidden;
-}
-
 .zoom {
     display: inline-block;
     position: relative;
+}
+
+.votedo .rowvote{
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+h1{
+    margin-top: 15px;
+    margin-top: 10px;
+}
+
+.footer{
+    font-size: 30px;
+    padding-top: 40px;
+    padding-bottom: 10px;
+    width:100%;
 }
