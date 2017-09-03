@@ -48,6 +48,14 @@ class IndexController extends Controller
             $this->success('投票成功，谢谢合作！');
         }
 
+        //获取当前的投票信息结果
+        $resultQueryList = $this->voteservice->getInfoList();
+        $resultList = [];
+        foreach ($resultQueryList as $key => $value) {
+            $resultList[$value['id']] = $value['votenumber'];
+        }
+
+        $this->assign('data', $resultList);
         $this->display();
     }
 
