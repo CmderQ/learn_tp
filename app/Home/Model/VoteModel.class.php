@@ -69,4 +69,15 @@ class VoteModel extends RelationModel
         return false;
     }
 
+
+    /**
+     * 获取所有的投票信息
+     *
+     * @return mixed
+     */
+    public function getInfoList()
+    {
+        return $this->select();
+    }
+
 }
