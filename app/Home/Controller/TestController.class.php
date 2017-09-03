@@ -17,4 +17,8 @@ class TestController extends Controller
     {
         $this->display();
     }
+    public function check()
+    {
+        echo date('Ym', strtotime('-1 month'));
+    }
 }
