@@ -16,10 +16,10 @@
             </div>
             <div class="votedo1">
                 <div class="rowvote">
-                    <div class="votenum">票数：<b>0</b>票
+                    <div class="votenum" id="vote1">票数：<b>0</b>票
                         <div class="vote">
                             投票
-                            <input type="hidden" class="vote1" value="1">
+                            <input type="hidden" name="one" value="1">
                         </div>
                     </div>
                 </div>
@@ -33,10 +33,10 @@
             </div>
             <div class="votedo2">
                 <div class="rowvote">
-                    <div class="votenum">票数：<b>0</b>票
+                    <div class="votenum" id="vote2">票数：<b>0</b>票
                         <div class="vote">
                             投票
-                            <input type="hidden" class="vote1" value="1">
+                            <input type="hidden" name="two" value="2">
                         </div>
                     </div>
                 </div>
@@ -50,10 +50,10 @@
             </div>
             <div class="votedo3">
                 <div class="rowvote">
-                    <div class="votenum">票数：<b>0</b>票
+                    <div class="votenum" id="vote3">票数：<b>0</b>票
                         <div class="vote">
                             投票
-                            <input type="hidden" class="vote1" value="1">
+                            <input type="hidden" name="three" value="3">
                         </div>
                     </div>
                 </div>
@@ -67,10 +67,10 @@
             </div>
             <div class="votedo4">
                 <div class="rowvote">
-                    <div class="votenum">票数：<b>0</b>票
+                    <div class="votenum" id="vote4">票数：<b>0</b>票
                         <div class="vote">
                             投票
-                            <input type="hidden" class="vote1" value="1">
+                            <input type="hidden" name="four" value="4">
                         </div>
                     </div>
                 </div>
@@ -84,10 +84,10 @@
             </div>
             <div class="votedo">
                 <div class="rowvote">
-                    <div class="votenum">票数：<b>0</b>票
+                    <div class="votenum" id="vote5">票数：<b>0</b>票
                         <div class="vote">
                             投票
-                            <input type="hidden" class="vote1" value="1">
+                            <input type="hidden" name="five" value="5">
                         </div>
                     </div>
                 </div>
@@ -103,10 +103,10 @@
             </div>
             <div class="votedo6">
                 <div class="rowvote">
-                    <div class="votenum">票数：<b>0</b>票
+                    <div class="votenum" id="vote6">票数：<b>0</b>票
                         <div class="vote">
                             投票
-                            <input type="hidden" class="vote1" value="1">
+                            <input type="hidden" name="six" value="6">
                         </div>
                     </div>
                 </div>
@@ -120,10 +120,10 @@
             </div>
             <div class="votedo7">
                 <div class="rowvote">
-                    <div class="votenum">票数：<b>0</b>票
+                    <div class="votenum" id="vote7">票数：<b>0</b>票
                         <div class="vote">
                             投票
-                            <input type="hidden" class="vote1" value="1">
+                            <input type="hidden" name="seven" value="7">
                         </div>
                     </div>
                 </div>
@@ -137,10 +137,10 @@
             </div>
             <div class="votedo8">
                 <div class="rowvote">
-                    <div class="votenum">票数：<b>0</b>票
+                    <div class="votenum" id="vote8">票数：<b>0</b>票
                         <div class="vote">
                             投票
-                            <input type="hidden" class="vote1" value="1">
+                            <input type="hidden" name="egiht" value="8">
                         </div>
                     </div>
                 </div>
@@ -154,10 +154,10 @@
             </div>
             <div class="votedo9">
                 <div class="rowvote">
-                    <div class="votenum">票数：<b>0</b>票
+                    <div class="votenum" id="vote9">票数：<b>0</b>票
                         <div class="vote">
                             投票
-                            <input type="hidden" class="vote1" value="1">
+                            <input type="hidden" name="nine" value="9">
                         </div>
                     </div>
                 </div>
@@ -171,10 +171,10 @@
             </div>
             <div class="votedo10">
                 <div class="rowvote">
-                    <div class="votenum">票数：<b>0</b>票
+                    <div class="votenum" id="vote10">票数：<b>0</b>票
                         <div class="vote">
                             投票
-                            <input type="hidden" class="vote1" value="1">
+                            <input type="hidden" name="ten" value="10">
                         </div>
                     </div>
                 </div>
@@ -197,6 +197,112 @@
         $('#ex8').zoom();
         $('#ex9').zoom();
         $('#ex10').zoom();
+
+
+        //第一幅图片
+        $("#vote1").click(function () {
+            var numbner_one = $("input[name='one']").val();
+            if (numbner_one != '') {
+                sendVote(numbner_one);
+            }
+        });
+
+        //第二幅图片
+        $("#vote2").click(function () {
+            var numbner_two = $("input[name='two']").val();
+            if (numbner_two != '') {
+                sendVote(numbner_two);
+            }
+        });
+
+        //第三幅图片
+        $("#vote3").click(function () {
+            var numbner_three = $("input[name='three']").val();
+            if (numbner_three != '') {
+                sendVote(numbner_three);
+            }
+        });
+
+        //第四幅图片
+        $("#vote4").click(function () {
+            var numbner_four = $("input[name='four']").val();
+            if (numbner_four != '') {
+                sendVote(numbner_four);
+            }
+        });
+
+        //第五幅图片
+        $("#vote5").click(function () {
+            var numbner_five = $("input[name='five']").val();
+            if (numbner_five != '') {
+                sendVote(numbner_five);
+            }
+        });
+
+        //第六幅图片
+        $("#vote6").click(function () {
+            var numbner_six = $("input[name='six']").val();
+            if (numbner_six != '') {
+                sendVote(numbner_six);
+            }
+        });
+
+        //第七幅图片
+        $("#vote7").click(function () {
+            var numbner_seven = $("input[name='seven']").val();
+            if (numbner_seven != '') {
+                sendVote(numbner_seven);
+            }
+        });
+
+        //第八幅图片
+        $("#vote8").click(function () {
+            var numbner_egiht = $("input[name='egiht']").val();
+            if (numbner_egiht != '') {
+                sendVote(numbner_egiht);
+            }
+        });
+
+        //第九幅图片
+        $("#vote9").click(function () {
+            var numbner_nine = $("input[name='nine']").val();
+            if (numbner_nine != '') {
+                sendVote(numbner_nine);
+            }
+        });
+
+        //第十幅图片
+        $("#vote10").click(function () {
+            var numbner_ten = $("input[name='ten']").val();
+            if (numbner_ten != '') {
+                sendVote(numbner_ten);
+            }
+        });
+
+        //将选择的图片号数字提交
+        function sendVote(number) {
+            var selectNo = number;
+            $.ajax({
+                type: 'POST',
+                url: '__URL__/index',
+                data: {number: selectNo},
+                datatype: 'json',
+                success: function (result) {
+                    $.alert({
+                        title: '投票结果',
+                        content: result.info,
+                        buttons: {
+                            ok: function () {
+                                location.href = "__URL__/index";
+                            }
+                        }
+                    });
+                },
+                error: function (message) {
+                    console.log(message);
+                }
+            });
+        }
     })
 </script>
 </body>
