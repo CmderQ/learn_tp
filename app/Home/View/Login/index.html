@@ -353,9 +353,6 @@
         if (checkEmailIsExist(email)) {
             $.alert({
                 content: '邮箱已被注册，请更换邮箱地址!',
-                confirm: function () {
-                    window.location.reload();
-                }
             });
             return false;
         }
@@ -371,22 +368,22 @@
                     $.confirm({
                         title: '注册成功',
                         content: result.info,
-                        confirm: function () {
-                            $.alert('返回登录')
+                        buttons: {
+                            ok: function () {
+                                location.href = "__URL__/index";
+                            }
                         }
                     });
-                    window.location.reload();
                     return false;
                 }
                 $.alert({
                     title: '注册失败',
                     content: result.info,
-                    confirm: function () {
-                        $.alert('请重新注册')
+                    ok: function () {
+                        location.href = "__URL__/index";
                     }
 
                 });
-                window.location.reload();
             },
             error: function (message) {
                 console.log(message);
