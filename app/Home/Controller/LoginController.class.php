@@ -39,34 +39,23 @@ class LoginController extends Controller
             $password = I('post.paword');
             $email = I('post.email');
 
-            if (empty($username)) {
-                $this->error('用户名不能为空');
-            }
+            //对参数进行校验
+            $checkResult = $this->checkparam($username, $password, $email);
+            if ($checkResult) {
+                //对注册的用户名和邮箱进行过滤，防止XSS和SQL注入攻击
+                $username = htmlentities($username);
+                $email = htmlentities($email);
 
-            if (mb_strlen($username, 'utf-8') < 6 || mb_strlen($username, 'utf-8') > 15) {
-                $this->error('用户名长度范围为6到15位');
-            }
+                //对密码使用Crypt()函数进行加密
+                $password = Crypt($password);
+                $result = $this->loginservice->register($username, $password, $email);
 
-            if (empty($password)) {
-                $this->error('密码不能为空');
-            }
+                if (!$result) {
+                    $this->error('注册失败，请重试');
+                }
 
-            if (trim($password) < 6) {
-                $this->error('密码长度最少为6位');
+                $this->success('注册成功');
             }
-
-            $pattern = "/^([0-9A-Za-z\\-_\\.]+)@([0-9a-z]+\\.[a-z]{2,3}(\\.[a-z]{2})?)$/i";
-            if (!preg_match($pattern, $email)) {
-                $this->error('邮箱格式不正确, 请重新输入');
-            }
-            $password = Crypt($password);
-            $result = $this->loginservice->register($username, $password, $email);
-
-            if (!$result) {
-                $this->error('注册失败，请重试');
-            }
-
-            $this->success('注册成功');
 
         } else {
             $this->error('提交失败，请重试');
@@ -135,5 +124,39 @@ class LoginController extends Controller
         }
 
         $this->error('邮箱地址不能为空!');
+    }
+
+    /**
+     * 对传入的参数进行校验
+     *
+     * @param $username
+     * @param $password
+     * @param $email
+     * @return bool
+     */
+    private function checkparam($username, $password, $email)
+    {
+        if (empty($username)) {
+            $this->error('用户名不能为空');
+        }
+
+        if (mb_strlen($username, 'utf-8') < 6 || mb_strlen($username, 'utf-8') > 15) {
+            $this->error('用户名长度范围为6到15位');
+        }
+
+        if (empty($password)) {
+            $this->error('密码不能为空');
+        }
+
+        if (strlen(trim($password)) < 6) {
+            $this->error('密码长度最少为6位');
+        }
+
+        $pattern = "/^([0-9A-Za-z\\-_\\.]+)@([0-9a-z]+\\.[a-z]{2,3}(\\.[a-z]{2})?)$/i";
+        if (!preg_match($pattern, $email)) {
+            $this->error('邮箱格式不正确, 请重新输入');
+        }
+
+        return true;
     }
 }
