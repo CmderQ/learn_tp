@@ -353,6 +353,9 @@
         if (checkEmailIsExist(email)) {
             $.alert({
                 content: '邮箱已被注册，请更换邮箱地址!',
+                confirm: function () {
+                    window.location.reload();
+                }
             });
             return false;
         }
@@ -368,15 +371,22 @@
                     $.confirm({
                         title: '注册成功',
                         content: result.info,
+                        confirm: function () {
+                            $.alert('返回登录')
+                        }
                     });
                     window.location.reload();
-                } else {
-                    $.alert({
-                        title: '注册失败',
-                        content: result.info,
-                    });
-                    window.location.reload();
+                    return false;
                 }
+                $.alert({
+                    title: '注册失败',
+                    content: result.info,
+                    confirm: function () {
+                        $.alert('请重新注册')
+                    }
+
+                });
+                window.location.reload();
             },
             error: function (message) {
                 console.log(message);
@@ -436,7 +446,7 @@
                             }
                         }
                     });
-                }else{
+                } else {
                     $.alert({
                         content: '邮箱地址不存在，请输入你关联的邮箱地址!',
                         buttons: {
