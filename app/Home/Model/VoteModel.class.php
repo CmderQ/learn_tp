@@ -5,9 +5,9 @@
 
 namespace Home\Model;
 
-use Think\Model\RelationModel;
+use Think\Model;
 
-class VoteModel extends RelationModel
+class VoteModel extends Model
 {
     /**
      * 插入方法
