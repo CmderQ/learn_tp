@@ -5,9 +5,9 @@
 
 namespace Home\Model;
 
-use Think\Model\RelationModel;
+use Think\Model;
 
-class LoginModel extends RelationModel
+class LoginModel extends Model
 {
     //注册方法
     public function register($username, $password, $email)
