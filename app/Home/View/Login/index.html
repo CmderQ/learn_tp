@@ -261,6 +261,34 @@
     });
 
 
+    //验证该用户名是否存在
+    function checkUserExist(username){
+        var flag = false;
+        if(username){
+            $.alert({
+                content: '用户名不能为空!',
+            });
+        }
+
+        $.ajax({
+            type:"POST",
+            data: {username: username, type:'1'},
+            url: "__URL__/checkInfo",
+            dataType: "json",
+            async: false,//注，这里需要改成同步方式。若异步方式，则会跳过此验证
+            success: function (result) {
+                var status = result.status;
+                if (status == '1') {
+                    flag = true;
+                }
+            },
+            error: function (message) {
+                console.log(message);
+            }
+        });
+        return flag;
+    }
+
     //验证邮箱是否被注册
     function checkEmailIsExist(value) {
         var flag = false;
@@ -271,8 +299,8 @@
         }
         $.ajax({
             type: "POST",
-            data: {email: value},
-            url: "__URL__/checkEmail",
+            data: {email: value, type:'2'},
+            url: "__URL__/checkInfo",
             dataType: "json",
             async: false,//注，这里需要改成同步方式。若异步方式，则会跳过此验证
             success: function (result) {
@@ -300,6 +328,15 @@
             });
             return false;
         }
+
+        if (checkUserExist(username)) {
+            $.alert({
+                content: '该用户名已存在，请更换!',
+            });
+            return false;
+        }
+
+
         if (username.length < 6 || username.length > 15) {
             $.alert({
                 content: '用户名长度范围为6到15位!',
