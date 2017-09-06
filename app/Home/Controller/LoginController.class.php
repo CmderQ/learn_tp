@@ -111,38 +111,33 @@ class LoginController extends Controller
      */
     public function checkInfo()
     {
-        $type = I("post.type", '1');
-        if ($type != 1) {
-            $email = I('post.email');
-            if (empty($email)) {
-                $this->error('邮箱地址不能为空!');
-            }
-
-            $where['email'] = $email;
-        } else {
-            $username = I('post.username');
-            if (empty($username)) {
-                $this->error('用户名不能为空!');
-            }
-
-            $where['name'] = $username;
+        $type = I("post.type");
+        if ($type == 2) {
+            $where['email'] = I('post.email');
         }
-
+        if ($type == 1) {
+            $where['user_name'] = I('post.username');
+        }
         $result = $this->loginservice->getInfo($where);
 
         //邮箱检验
-        if ($result && $type == 2) {
-            $this->success('邮箱地址已存在');
-        } else {
-            $this->error('邮箱地址不存在!');
+        if ($type == 2) {
+            if ($result) {
+                $this->success('邮箱地址已存在');
+            } else {
+                $this->error('邮箱地址不存在!');
+            }
         }
 
         //用户名检验
-        if ($result && $type == 1) {
-            $this->success('用户名已存在');
-        } else {
-            $this->error('用户名不存在!');
+        if ($type == 1) {
+            if ($result) {
+                $this->success('用户名已存在');
+            } else {
+                $this->error('用户名不存在!');
+            }
         }
+
 
     }
 
