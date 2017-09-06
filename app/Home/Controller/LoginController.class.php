@@ -107,23 +107,43 @@ class LoginController extends Controller
 
 
     /**
-     * 检查邮箱有无被注册
+     * 检查邮箱有无被注册和用户名是否已存在
      */
-    public function checkEmail()
+    public function checkInfo()
     {
-        $email = I('post.email');
-        if (empty($email)) {
-            $this->error('邮箱地址不能为空!');
+        $type = I("post.type", '1');
+        if ($type != 1) {
+            $email = I('post.email');
+            if (empty($email)) {
+                $this->error('邮箱地址不能为空!');
+            }
+
+            $where['email'] = $email;
+        } else {
+            $username = I('post.username');
+            if (empty($username)) {
+                $this->error('用户名不能为空!');
+            }
+
+            $where['name'] = $username;
         }
 
-        $where['email'] = $email;
         $result = $this->loginservice->getInfo($where);
 
-        if ($result) {
+        //邮箱检验
+        if ($result && $type == 2) {
             $this->success('邮箱地址已存在');
+        } else {
+            $this->error('邮箱地址不存在!');
         }
 
-        $this->error('邮箱地址不能为空!');
+        //用户名检验
+        if ($result && $type == 1) {
+            $this->success('用户名已存在');
+        } else {
+            $this->error('用户名不存在!');
+        }
+
     }
 
     /**
