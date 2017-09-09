@@ -9,6 +9,7 @@
  */
 
 namespace Home\Controller;
+
 use Think\Controller;
 
 class TestController extends Controller
@@ -17,8 +18,29 @@ class TestController extends Controller
     {
         $this->display();
     }
+
     public function check()
     {
-        echo date('Ym', strtotime('-1 month'));
+        $multiArr = [
+            'aaa' => [
+                'a' => [
+                    'num' => '1',
+                ],
+                'b' => [
+                    'num' => '2',
+                ]
+            ],
+            'bbb' => [
+                'c' => [
+                    'num' => '3',
+                ],
+                'd' => [
+                    'num' => '4',
+
+                ]
+            ]
+        ];
+        $this->assign('list', $multiArr);
+        $this->display();
     }
 }

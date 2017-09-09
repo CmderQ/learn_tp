@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>volist双重循环</title>
+</head>
+<body>
+<table>
+    <tr>
+        <foreach name="list" item="data" key="i">
+            <td>{$i}</td>
+            <td>
+            <tr>
+                <volist name="data" id="vo" key="k">
+                    <td>{$key}</td>
+                    <td>{$vo.num}</td>
+                </volist>
+            </tr>
+            </td>
+        </foreach>
+    </tr>
+</table>
+</body>
+</html>
