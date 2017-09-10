@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * 注册登录控制器
+ */
 namespace Home\Controller;
 
 use Think\Controller;
