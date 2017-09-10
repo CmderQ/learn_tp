@@ -1,11 +1,6 @@
 <?php
 /**
  * 测试控制器---关于一些新的方法测试控制器
- * Created by PhpStorm.
- * Filename:  TestController.php
- * User:      wuhaiqiao
- * Date:      2017/8/30
- * Time:      13:41
  */
 
 namespace Home\Controller;
@@ -14,6 +9,15 @@ use Think\Controller;
 
 class TestController extends Controller
 {
+    //redis安装使用测试
+    public function redis()
+    {
+        $redis = new \Redis();
+        $redis->connect('127.0.0.1', 6379);
+        $redis->set('test', 'hello world!');
+        echo $redis->get("test");
+    }
+
     public function index()
     {
         $this->display();
