@@ -33,7 +33,7 @@ class IndexController extends Controller
 
             //将对于的number写入redis里面
             $redis = new \Redis();
-            $redis->connect('127.0.0.1', 6379);
+            $redis->connect(C('REDIS_HOST'), C('REDIS_PORT'));
 //            dump($redis->lPush('num', $number));
 //            dump($redis->brPop('num', $redis -> lLen('num')));
 
