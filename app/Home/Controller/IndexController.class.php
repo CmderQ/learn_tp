@@ -30,6 +30,13 @@ class IndexController extends Controller
 
         if (!empty($number)) {
             $number = $this->checkInput($number);
+
+            //将对于的number写入redis里面
+            $redis = new \Redis();
+            $redis->connect(C('REDIS_HOST'), C('REDIS_PORT'));
+//            dump($redis->lPush('num', $number));
+//            dump($redis->brPop('num', $redis -> lLen('num')));
+
             $resultGetInfo = $this->voteservice->getInfo($number);
 
             //根据图片id，判断数据库中是否存在对于id的数据，若没有，则说明是第一次投票，进行添加操作，反之，则进行更新操作
@@ -69,4 +76,5 @@ class IndexController extends Controller
 
         return $num;
     }
+
 }

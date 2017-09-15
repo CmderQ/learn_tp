@@ -13,7 +13,7 @@ class TestController extends Controller
     public function redis()
     {
         $redis = new \Redis();
-        $redis->connect('127.0.0.1', 6379);
+        $redis->connect(C('REDIS_HOST'), C('REDIS_PORT'));
         $redis->set('test', 'hello world!');
         echo $redis->get("test");
     }
