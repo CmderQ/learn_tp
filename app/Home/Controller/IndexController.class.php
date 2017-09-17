@@ -26,6 +26,7 @@ class IndexController extends Controller
 
     public function index()
     {
+        dump($_SESSION);
         $number = I('post.number', 0, 'intval');
 
         if (!empty($number)) {
