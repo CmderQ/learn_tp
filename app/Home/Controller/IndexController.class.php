@@ -26,34 +26,38 @@ class IndexController extends Controller
 
     public function index()
     {
-        dump($_SESSION);
         $number = I('post.number', 0, 'intval');
 
         if (!empty($number)) {
-            $number = $this->checkInput($number);
+            if (isset($_SESSION["username"]) && !empty($_SESSION["username"])) {
+                $number = $this->checkInput($number);
 
-            //将对于的number写入redis里面
-            $redis = new \Redis();
-            $redis->connect(C('REDIS_HOST'), C('REDIS_PORT'));
+                //将对于的number写入redis里面
+                $redis = new \Redis();
+                $redis->connect(C('REDIS_HOST'), C('REDIS_PORT'));
 //            dump($redis->lPush('num', $number));
 //            dump($redis->brPop('num', $redis -> lLen('num')));
 
-            $resultGetInfo = $this->voteservice->getInfo($number);
+                $resultGetInfo = $this->voteservice->getInfo($number);
 
-            //根据图片id，判断数据库中是否存在对于id的数据，若没有，则说明是第一次投票，进行添加操作，反之，则进行更新操作
-            if (empty($resultGetInfo)) {
-                $resultAddInfo = $this->voteservice->addData($number);
-                if (!$resultAddInfo) {
-                    $this->error('初次投票失败，请重试!');
+                //根据图片id，判断数据库中是否存在对于id的数据，若没有，则说明是第一次投票，进行添加操作，反之，则进行更新操作
+                if (empty($resultGetInfo)) {
+                    $resultAddInfo = $this->voteservice->addData($number);
+                    if (!$resultAddInfo) {
+                        $this->error('初次投票失败，请重试!');
+                    }
+                } else {
+                    $resultUdpateInfo = $this->voteservice->updateVote($number, $resultGetInfo['votenumber']);
+                    if (!$resultUdpateInfo) {
+                        $this->error('投票失败，请重试!');
+                    }
                 }
-            } else {
-                $resultUdpateInfo = $this->voteservice->updateVote($number, $resultGetInfo['votenumber']);
-                if (!$resultUdpateInfo) {
-                    $this->error('投票失败，请重试!');
-                }
+
+                $this->success('投票成功，谢谢合作！');
+
+            } else {  //若session中不存在该用户，说明用户没有登陆，提示用户登陆
+                $this->error('请先登陆，再投票', '../Login/index', 5);
             }
-
-            $this->success('投票成功，谢谢合作！');
         }
 
         //获取当前的投票信息结果
