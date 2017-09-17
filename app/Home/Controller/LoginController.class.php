@@ -3,6 +3,7 @@
 /**
  * 注册登录控制器
  */
+
 namespace Home\Controller;
 
 use Think\Controller;
@@ -70,6 +71,9 @@ class LoginController extends Controller
      */
     public function login()
     {
+        //启动session的初始化
+        session_start();
+
         if (IS_AJAX) {
             $username = I('post.user');
             $password = I('post.paword');
@@ -84,8 +88,12 @@ class LoginController extends Controller
             $result = $this->loginservice->getInfo($where);
 
             if (!$result) {
-                $this->error("亲，用户名或密码输入错误，请重新输入哦！");
+                $this->error("亲，登陆失败，请重试！");
             }
+
+            //登陆成功，则将对于的用户名写入到session中保存
+            $_SESSION = array();
+            $_SESSION["username"] = $username;
 
             $this->success("登录成功!");
         }
