@@ -13,4 +13,15 @@ return array(
     'REDIS_PERSISTENT' => false,//是否长连接 false=短连接
     'REDIS_AUTH' => 123456,//AUTH认证密码
     'DATA_CACHE_TIME' => 10800,      // 数据缓存有效期 0表示永久缓存
+
+    //Crypt函数加密salt
+    'SALT' => 123456,
+
+    //session设置
+    'SESSION_OPTIONS' => array(
+        'name' => 'username',                    //设置session名
+        'expire' => 600,                      //SESSION保存10minute
+        'use_trans_sid' => 1,                               //跨页传递
+        'use_only_cookies' => 0,                               //是否只开启基于cookies的session的会话方式
+    ),
 );
