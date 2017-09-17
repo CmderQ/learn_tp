@@ -51,7 +51,7 @@ class LoginController extends Controller
                 $email = htmlentities($email);
 
                 //对密码使用Crypt()函数进行加密
-                $password = Crypt($password);
+                $password = Crypt($password, C('SALT'));
                 $result = $this->loginservice->register($username, $password, $email);
 
                 if (!$result) {
@@ -84,7 +84,7 @@ class LoginController extends Controller
 
             $where = [];
             $where['user_name'] = $username;
-            $where['password'] = Crypt($password);
+            $where['password'] = Crypt($password, C('SALT'));
             $result = $this->loginservice->getInfo($where);
 
             if (!$result) {
