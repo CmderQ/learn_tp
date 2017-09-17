@@ -5,7 +5,7 @@
 </head>
 <body>
 <div class="pull-right">
-    <a  class="btn btn-link btn-lg" href="{:U('Login/index')}">注册登录</a>
+    <a class="btn btn-link btn-lg" href="{:U('Login/index')}">注册登录</a>
 </div>
 <div class="row center">
     <h1>最可爱的baby投票</h1>
@@ -333,15 +333,28 @@
                 data: {number: selectNo},
                 datatype: 'json',
                 success: function (result) {
-                    $.alert({
-                        title: '投票结果',
-                        content: result.info,
-                        buttons: {
-                            ok: function () {
-                                location.href = "__URL__/index";
+                    if (result.status == 1) {
+                        $.alert({
+                            title: '投票结果',
+                            content: result.info,
+                            buttons: {
+                                ok: function () {
+                                    location.href = "__URL__/index";
+                                }
                             }
-                        }
-                    });
+                        });
+                    } else {
+                        $.alert({
+                            title: '投票结果',
+                            content: result.info,
+                            buttons: {
+                                ok: function () {
+                                    location.href = result.url;
+                                }
+                            }
+                        });
+                    }
+
                 },
                 error: function (message) {
                     console.log(message);
