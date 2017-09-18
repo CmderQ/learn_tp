@@ -27,14 +27,13 @@ class IndexController extends Controller
     public function index()
     {
         $number = I('post.number', 0, 'intval');
-
         if (!empty($number)) {
             if (isset($_SESSION["username"]) && !empty($_SESSION["username"])) {
                 $number = $this->checkInput($number);
 
                 //将对于的number写入redis里面
-                $redis = new \Redis();
-                $redis->connect(C('REDIS_HOST'), C('REDIS_PORT'));
+//                $redis = new \Redis();
+//                $redis->connect(C('REDIS_HOST'), C('REDIS_PORT'));
 //            dump($redis->lPush('num', $number));
 //            dump($redis->brPop('num', $redis -> lLen('num')));
 
@@ -82,4 +81,29 @@ class IndexController extends Controller
         return $num;
     }
 
+    /**
+     * 退出登录
+     */
+    public function logout()
+    {
+        if ($this->is_login()) {
+            session('username', null);
+            session('[destroy]');
+            $this->success('退出成功！', U('/Index/index'));
+        } else {
+            $this->redirect('/Index/index');
+        }
+    }
+
+    /**
+     * 判断是否已登录
+     */
+    private function is_login()
+    {
+        if (isset($_SESSION["username"]) && !empty($_SESSION["username"])) {
+            return true;
+        }
+
+        return false;
+    }
 }
