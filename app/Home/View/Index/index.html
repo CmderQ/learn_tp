@@ -4,9 +4,16 @@
     <link rel="stylesheet" type="text/css" href="__CSS__/home_index.css">
 </head>
 <body>
-<div class="pull-right">
-    <a class="btn btn-link btn-lg" href="{:U('Login/index')}">注册登录</a>
-</div>
+<if condition="!empty($_SESSION['username'])">
+    <div class="pull-right">
+       <b>{$Think.session.username}</b> 你好,欢迎!
+        <a  class="btn-link"  href="__URL__/logout">注销</a>
+    </div>
+    <else/>
+    <div class="pull-right">
+        <a class="btn btn-link btn-lg" href="{:U('Login/index')}">注册登录</a>
+    </div>
+</if>
 <div class="row center">
     <h1>最可爱的baby投票</h1>
 </div>
