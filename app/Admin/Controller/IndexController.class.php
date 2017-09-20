@@ -14,4 +14,12 @@ class IndexController extends Controller
     {
         $this->display();
     }
+
+    /**
+     * 后台登录页
+     */
+    public  function login()
+    {
+        $this->display();
+    }
 }
