@@ -21,5 +21,10 @@ return array(
         '__CSS__' => __ROOT__.'/Public/static/css',
         '__JS__'     =>__ROOT__.'/Public/static/js',
         '__IMAGES__'=>__ROOT__.'/Public/static/images',
+
+        //后台样式配置
+        '__ADMIN_CSS__' => __ROOT__.'/Public/static/admin/css',
+        '__ADMIN_JS__'     =>__ROOT__.'/Public/static/admin/js',
+        '__ADMIN_IMAGES__'=>__ROOT__.'/Public/static/admin/images',
     ),
 );
