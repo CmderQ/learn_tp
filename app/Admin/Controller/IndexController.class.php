@@ -1,4 +1,7 @@
 <?php
+/**
+ * 后台登录控制器
+ */
 
 namespace Admin\Controller;
 
@@ -11,15 +14,21 @@ use Think\Verify;
 class IndexController extends Controller
 {
 
-    public function index()
+    /**
+     * @var /Admin/Model/LoginModel
+     */
+    protected $loginservice;
+
+    public function __construct()
     {
-        $this->display();
+        parent::__construct();
+        $this->loginservice = D('Login');
     }
 
     /**
      * 后台登录页
      */
-    public  function login()
+    public function index()
     {
         $this->display();
     }
@@ -40,4 +49,38 @@ class IndexController extends Controller
         $verify->imageH = 41;//验证码高度
         $verify->entry();
     }
+
+    /**
+     * 登录校验
+     */
+    public function login()
+    {
+        //启动session的初始化
+        session_start();
+
+        if (IS_AJAX) {
+            $username = I('post.user');
+            $password = I('post.paword');
+            $codeverify = I('post.verify', '');
+            if (!check_verify(strtolower($codeverify))) {
+                $this->error("亲，验证码输错了哦！");
+            }
+
+            $where = [];
+            $where['user_name'] = $username;
+            $where['password'] = Crypt($password, C('SALT'));
+            $result = $this->loginservice->getInfo($where);
+
+            if (!$result) {
+                $this->error("亲，登陆失败，请重试！");
+            }
+
+            //登陆成功，则将对于的用户名写入到session中保存
+            $_SESSION = array();
+            $_SESSION["username"] = $username;
+
+            $this->success("登录成功!");
+        }
+    }
+
 }
