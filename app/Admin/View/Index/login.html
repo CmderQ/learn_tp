@@ -12,21 +12,19 @@
             <div class="row cl">
                 <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
                 <div class="formControls col-xs-8">
-                    <input id="" name="" type="text" placeholder="账户" class="input-text size-L">
+                    <input id="username" name="username" type="text" placeholder="账户" class="input-text size-L">
                 </div>
             </div>
             <div class="row cl">
                 <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60e;</i></label>
                 <div class="formControls col-xs-8">
-                    <input id="" name="" type="password" placeholder="密码" class="input-text size-L">
+                    <input id="password" name="password" type="password" placeholder="密码" class="input-text size-L">
                 </div>
             </div>
             <div class="row cl">
-                <div class="formControls col-xs-8 col-xs-offset-3">
-                    <input class="input-text size-L" type="text" placeholder="验证码"
-                           onblur="if(this.value==''){this.value='验证码:'}"
-                           onclick="if(this.value=='验证码:'){this.value='';}" value="验证码:" style="width:150px;">
-                    <img src=""> <a id="kanbuq" href="javascript:;">看不清，换一张</a>
+                <div class="col-xs-8 col-xs-offset-3 no-padding-right">
+                        <input class="input-text size-L" type="text" placeholder="验证码" style="width:200px;">
+                        <img id="verify_img" src="__URL__/generatorVerfiy" alt="验证码" title="点击刷新"/>
                 </div>
             </div>
             <div class="row cl">
@@ -49,4 +47,14 @@
 </div>
 <div class="footer">Copyright cmderQ</div>
 <include file="Pub/common_footer"/>
+<script type="text/javascript">
+    $(function(){
+        //随机生成验证码
+        $("#verify_img").click(function () {
+            var verifyURL = "__URL__/generatorVerfiy";
+            var time = new Date().getTime();
+            $("#verify_img").attr("src", verifyURL + "/" + time);
+        });
+    });
+</script>
 </body>
