@@ -47,7 +47,7 @@ CREATE TABLE `cms_role_access` (
   KEY `idx_role_id` (`role_id`)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='角色权限表';
 
-CREATE TABLE `cms_app_access_log` (
+CREATE TABLE `cms_access_log` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `uid` BIGINT(20) NOT NULL DEFAULT '0' COMMENT '品牌UID',
   `target_url` VARCHAR(255) NOT NULL DEFAULT '' COMMENT '访问的url',
