@@ -7,6 +7,7 @@ namespace Admin\Controller;
 
 use Think\Controller;
 use Think\Verify;
+use Org\Util\Rbac;
 
 /**
  * 首页
@@ -15,14 +16,14 @@ class IndexController extends Controller
 {
 
     /**
-     * @var /Admin/Model/LoginModel
+     * @var /Admin/Model/UserModel
      */
-    protected $loginservice;
+    protected $userservice;
 
     public function __construct()
     {
         parent::__construct();
-        $this->loginservice = D('Login');
+        $this->userservice = D('User');
     }
 
     /**
@@ -51,36 +52,10 @@ class IndexController extends Controller
     }
 
     /**
-     * 登录校验
+     * 后台用户登陆检测
      */
     public function login()
     {
-        //启动session的初始化
-        session_start();
 
-        if (IS_AJAX) {
-            $username = I('post.user');
-            $password = I('post.paword');
-            $codeverify = I('post.verify', '');
-            if (!check_verify(strtolower($codeverify))) {
-                $this->error("亲，验证码输错了哦！");
-            }
-
-            $where = [];
-            $where['user_name'] = $username;
-            $where['password'] = Crypt($password, C('SALT'));
-            $result = $this->loginservice->getInfo($where);
-
-            if (!$result) {
-                $this->error("亲，登陆失败，请重试！");
-            }
-
-            //登陆成功，则将对于的用户名写入到session中保存
-            $_SESSION = array();
-            $_SESSION["username"] = $username;
-
-            $this->success("登录成功!");
-        }
     }
-
 }
