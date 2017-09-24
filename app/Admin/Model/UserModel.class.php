@@ -3,11 +3,11 @@
  * 注册登录操作
  */
 
-namespace Home\Model;
+namespace Admin\Model;
 
 use Think\Model;
 
-class LoginModel extends Model
+class UserModel extends Model
 {
     //注册方法
     public function register($username, $password, $email)
