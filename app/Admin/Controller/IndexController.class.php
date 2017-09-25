@@ -55,6 +55,29 @@ class IndexController extends Controller
      */
     public function login()
     {
+        //启动session的初始化
+        session_start();
 
+        $username = I('post.username');
+        $password = I('post.password');
+        $codeverify = I('post.verify', '');
+        if (!check_verify(strtolower($codeverify))) {
+            $this->error("亲，验证码输错了哦！");
+        }
+
+        $where = [];
+        $where['user_name'] = $username;
+        $where['password'] = Crypt($password, C('SALT'));
+        $result = $this->userservice->getInfo($where);
+
+        if (!$result) {
+            $this->error("亲，登陆失败，请重试！");
+        }
+
+        //登陆成功，则将对于的用户名写入到session中保存
+        $_SESSION = array();
+        $_SESSION["username"] = $username;
+
+        $this->success("登录成功!");
     }
 }
