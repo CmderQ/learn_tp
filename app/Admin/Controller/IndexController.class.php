@@ -7,7 +7,6 @@ namespace Admin\Controller;
 
 use Think\Controller;
 use Think\Verify;
-use Org\Util\Rbac;
 
 /**
  * 首页
